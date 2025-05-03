@@ -1,12 +1,64 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
+	import StarIcon from '../../static/icons/star.svg';
+	import Button from './shared/Button.svelte';
+	import { createEventDispatcher } from 'svelte';
+    let dispatch = createEventDispatcher();
+
+
+	export let movie;
+
+	let rating = 0;
+    let review = '';
+	const maxStars = 5;
+	const date = new Date().toDateString();
+
+	const setRating = (index: number) => {
+		rating = index;
+	};
 </script>
 
 <div
 	transition:fade={{ duration: 150 }}
-	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold"
 >
-	<div class="h-[500px] w-[500px] rounded-xl bg-white opacity-100">
-		<input type="text" />
+	<div
+		class=" flex flex-col h-[500px] w-[500px] rounded-xl border-3 border-white bg-black/75 p-6 opacity-100 backdrop-blur-xs gap-4"
+	>
+		<div class="flex gap-4">
+			<img
+				class="w-[150px] rounded-xl object-contain"
+				src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+				alt={movie.title}
+			/>
+			<div class="flex flex-col gap-4">
+				<div class="text-2xl">{movie.title}</div>
+				<div>
+					<div>Rate</div>
+					<div class="flex space-x-1">
+						{#each Array(maxStars).fill(0) as _, i (i)}
+							<button on:click={() => setRating(i + 1)}>
+								<img
+									src={StarIcon}
+									alt="Star"
+									class="size-10 cursor-pointer transition-transform hover:scale-110"
+									class:opacity-100={i < rating}
+									class:opacity-30={i >= rating}
+								/>
+							</button>
+						{/each}
+					</div>
+				</div>
+				<div>
+					<div>Date</div>
+					<div>{date}</div>
+				</div>
+			</div>
+		</div>
+		<textarea placeholder="Add review" class="w-full resize-none focus:outline-none" rows={6} bind:value={review}></textarea>
+        <div class="flex gap-4 justify-end">
+            <Button>Save</Button>
+            <Button on:click={() => dispatch('handleModal', false)}>Cancel</Button>
+        </div>
 	</div>
 </div>
