@@ -1,0 +1,16 @@
+# Ignore node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore logs and database files
+logs/
+*.log
+*.sqlite
+*.sqlite-journal

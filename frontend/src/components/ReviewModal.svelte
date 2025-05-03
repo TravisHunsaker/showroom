@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import StarIcon from '../../static/icons/star.svg';
 	import Button from './shared/Button.svelte';
 	import { createEventDispatcher } from 'svelte';
-    let dispatch = createEventDispatcher();
-
+	let dispatch = createEventDispatcher();
 
 	export let movie;
 
 	let rating = 0;
-    let review = '';
+	let review = '';
 	const maxStars = 5;
 	const date = new Date().toDateString();
 
@@ -23,7 +21,7 @@
 	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold"
 >
 	<div
-		class=" flex flex-col h-[500px] w-[500px] rounded-xl border-3 border-white bg-black/75 p-6 opacity-100 backdrop-blur-xs gap-4"
+		class=" flex h-[500px] w-[500px] flex-col gap-4 rounded-xl border-3 border-white bg-black/75 p-6 opacity-100 backdrop-blur-xs"
 	>
 		<div class="flex gap-4">
 			<img
@@ -39,7 +37,7 @@
 						{#each Array(maxStars).fill(0) as _, i (i)}
 							<button on:click={() => setRating(i + 1)}>
 								<img
-									src={StarIcon}
+									src={'/icons/star.svg'}
 									alt="Star"
 									class="size-10 cursor-pointer transition-transform hover:scale-110"
 									class:opacity-100={i < rating}
@@ -55,10 +53,15 @@
 				</div>
 			</div>
 		</div>
-		<textarea placeholder="Add review" class="w-full resize-none focus:outline-none" rows={6} bind:value={review}></textarea>
-        <div class="flex gap-4 justify-end">
-            <Button>Save</Button>
-            <Button on:click={() => dispatch('handleModal', false)}>Cancel</Button>
-        </div>
+		<textarea
+			placeholder="Add review"
+			class="w-full resize-none focus:outline-none"
+			rows={6}
+			bind:value={review}
+		></textarea>
+		<div class="flex justify-end gap-4">
+			<Button>Save</Button>
+			<Button on:click={() => dispatch('handleModal', false)}>Cancel</Button>
+		</div>
 	</div>
 </div>
