@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Button from './shared/Button.svelte';
-	import { createEventDispatcher } from 'svelte';
-	let dispatch = createEventDispatcher();
-
-	export let movie;
+	export let handleModal: (state: boolean) => void;
+	export let movie: any;
 
 	let rating = 0;
 	let review = '';
 	const maxStars = 5;
 	const date = new Date().toDateString();
+
 
 	const setRating = (index: number) => {
 		rating = index;
@@ -61,7 +60,7 @@
 		></textarea>
 		<div class="flex justify-end gap-4">
 			<Button>Save</Button>
-			<Button on:click={() => dispatch('handleModal', false)}>Cancel</Button>
+			<Button on:click={() => handleModal(false)}>Cancel</Button>
 		</div>
 	</div>
 </div>

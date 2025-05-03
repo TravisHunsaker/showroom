@@ -46,6 +46,6 @@
 	</div>
 
 	{#if open}
-		<ReviewModal {movie} on:handleModal={(e) => handleModal(e.detail)} />
+		<ReviewModal {movie} {handleModal} />
 	{/if}
 </div>
