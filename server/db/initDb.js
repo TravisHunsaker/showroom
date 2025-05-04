@@ -1,6 +1,7 @@
-import db from "./db.js";
+import db from './db.js';
 
-db.exec(`
+export const InitDB = () => {
+  db.exec(`
     CREATE TABLE IF NOT EXISTS reviews (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       movieId INTEGER NOT NULL UNIQUE,
@@ -10,10 +11,13 @@ db.exec(`
     );
   `);
 
-db.exec(`
+  db.exec(`
     CREATE TABLE IF NOT EXISTS watchlist (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       movieId INTEGER NOT NULL UNIQUE,
       createdAt TEXT
     );
   `);
+
+  console.log('Database tables ensured.');
+}
