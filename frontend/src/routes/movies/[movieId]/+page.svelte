@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { addToWatchlist,  removeFromWatchlist } from '../../../bleh/watchlist';
 	import NavBar from '../../../components/NavBar.svelte';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
@@ -6,12 +7,26 @@
 	export let data;
 	const { movie } = data;
 	let open = false;
+	let savedToWatchlist = false;
 
+	const handleToggleBookmark = async (id: string) => {
+
+	
+		if (savedToWatchlist) {
+			await removeFromWatchlist(id);
+		} else {
+			await addToWatchlist(id);
+		}
+
+		savedToWatchlist = !savedToWatchlist;
+	};
 	// console.log(movie);
 
 	const handleModal = (state: boolean) => {
 		open = state;
 	};
+
+	
 </script>
 
 <div class="relative flex h-screen items-center justify-center bg-black p-10 text-white">
@@ -30,7 +45,16 @@
 		<div class="relative flex flex-1 rounded-xl border-3 border-white bg-black/50 backdrop-blur-xs">
 			<div class="z-1 flex flex-col justify-between p-6">
 				<div class="flex flex-col gap-4">
-					<h1 class="text-2xl font-bold">{movie.title}</h1>
+					<div class="flex items-center justify-between">
+						<h1 class="text-2xl font-bold">{movie.title}</h1>
+						<button on:click={() => handleToggleBookmark(movie.id)}>
+							<img
+								src={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
+								alt=""
+								class="size-9"
+							/>
+						</button>
+					</div>
 					<div class="flex gap-2">
 						{#each movie.genres as genre}
 							<div class="rounded-full bg-white/25 px-4 py-1 font-bold backdrop-blur-xs">

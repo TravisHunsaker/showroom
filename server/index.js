@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import reviewsRouter from './routes/reviews.js'
+import watchlistRouter from './routes/watchlist.js'
 import { InitDB } from './db/initDb.js'
 
 const PORT = 5000;
@@ -12,6 +13,7 @@ app.use(cors());
 InitDB();
 
 app.use('/reviews', reviewsRouter)
+app.use('/watchlist', watchlistRouter)
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);

@@ -1,16 +1,3 @@
-// import { getReviews } from '../../bleh/reviews.js';
-
-// export async function load() {
-// 	try {
-// 		const reviews = await getReviews();
-// 		return { reviews };
-// 	} catch (error) {
-// 		return {
-// 			status: 500,
-// 			error: new Error('Could not load reviews')
-// 		};
-// 	}
-// }
 import axios from 'axios';
 
 import { getReviews } from '../../bleh/reviews.js';

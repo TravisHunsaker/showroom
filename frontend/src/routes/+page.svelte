@@ -6,7 +6,9 @@
 <div class="relative flex w-full justify-center gap-10 overflow-hidden bg-black p-10">
 	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
 	<NavBar />
-	<div class="flex w-3/4 flex-wrap justify-between gap-10">
+	<div class="flex flex-col w-3/4 z-1 gap-10">
+		<div class="text-white text-4xl">Movies</div>
+	<div class="flex  flex-wrap justify-between gap-10">
 		{#each data.items.results as item}
 			<a href={`/movies/${item.id}`} class="z-1 transition ease-in-out hover:scale-[1.05]">
 				<div
@@ -25,4 +27,5 @@
 			</a>
 		{/each}
 	</div>
+</div>
 </div>
