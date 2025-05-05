@@ -1,8 +1,14 @@
 <script>
 	import NavBar from '../../components/NavBar.svelte';
+	export let data;
+
+	const { reviews } = data;
 </script>
 
-<div class="h-screen w-full bg-black">
+<div class="h-screen w-full bg-black text-white">
 	<NavBar />
-	<div>reviews</div>
+	{#each reviews as review}
+		<div>{review.review.rating}</div>
+		<div>{review.movie.title}</div>
+	{/each}
 </div>

@@ -7,7 +7,7 @@
 	const { movie } = data;
 	let open = false;
 
-	console.log(movie);
+	// console.log(movie);
 
 	const handleModal = (state: boolean) => {
 		open = state;

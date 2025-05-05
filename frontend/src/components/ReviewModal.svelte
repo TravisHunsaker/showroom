@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Button from './shared/Button.svelte';
+	import { addReview } from '../bleh/reviews';
 	export let handleModal: (state: boolean) => void;
 	export let movie: any;
 
@@ -9,9 +10,18 @@
 	const maxStars = 5;
 	const date = new Date().toDateString();
 
-
 	const setRating = (index: number) => {
 		rating = index;
+	};
+
+	const handleSave = async () => {
+		const reviewData = { movieId: movie.id, rating, review };
+		try {
+			await addReview(reviewData);
+			console.log('Review saved successfully');
+		} catch (error) {
+			console.error('Error saving review:', error);
+		}
 	};
 </script>
 
@@ -59,7 +69,7 @@
 			bind:value={review}
 		></textarea>
 		<div class="flex justify-end gap-4">
-			<Button>Save</Button>
+			<Button on:click={handleSave}>Save</Button>
 			<Button on:click={() => handleModal(false)}>Cancel</Button>
 		</div>
 	</div>

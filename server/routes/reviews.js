@@ -5,3 +5,5 @@ const router = express.Router();
 
 router.post('/addReview', addReview)
 router.get('/getReviews', getReviews)
+
+export default router

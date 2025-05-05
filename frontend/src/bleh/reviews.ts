@@ -16,7 +16,7 @@ export const addReview = async (reviewData: {
 
 export const getReviews = async () => {
 	try {
-		const response = await axios.post(`http://localhost:5000/reviews/getReviews`);
+		const response = await axios.get(`http://localhost:5000/reviews/getReviews`);
 
 		return response.data;
 	} catch (error) {

@@ -10,12 +10,14 @@
 
 	$: currentTab = page.url.pathname === '/' ? 'movies' : page.url.pathname.slice(1);
 
-	const changeCurrentTab = ( path: string) => {
+	const changeCurrentTab = (path: string) => {
 		goto(path);
 	};
 </script>
 
-<div class="fixed z-1 flex h-full w-full flex-col items-start justify-center gap-6 pl-10 text-xl font-bold text-white">
+<div
+	class="fixed z-1 flex h-full w-full flex-col items-start justify-center gap-6 pl-10 text-xl font-bold text-white"
+>
 	{#each tabs as tab (tab.id)}
 		<div class="flex items-center gap-4">
 			{#if currentTab === tab.value}
