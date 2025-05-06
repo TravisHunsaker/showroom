@@ -11,7 +11,7 @@
 	<NavBar />
 	<div class="flex flex-col w-3/4  z-1 gap-10">
 	<div class="text-white text-4xl">Watchlist</div>
-	<div class="flex flex-wrap justify-between gap-10">
+	<div class="flex flex-wrap gap-10">
 		{#each movies as item}
 			<a href={`/movies/${item.id}`} class="transition ease-in-out hover:scale-[1.05]">
 				<div

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { addToWatchlist,  removeFromWatchlist } from '../../../bleh/watchlist';
+	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
 	import NavBar from '../../../components/NavBar.svelte';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
@@ -10,8 +10,6 @@
 	let savedToWatchlist = false;
 
 	const handleToggleBookmark = async (id: string) => {
-
-	
 		if (savedToWatchlist) {
 			await removeFromWatchlist(id);
 		} else {
@@ -25,8 +23,6 @@
 	const handleModal = (state: boolean) => {
 		open = state;
 	};
-
-	
 </script>
 
 <div class="relative flex h-screen items-center justify-center bg-black p-10 text-white">
