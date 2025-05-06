@@ -23,3 +23,12 @@ export const getReviews = async () => {
 		throw error;
 	}
 };
+
+export const getReview = async (movieId: string) => {
+	try {
+		const response = await axios.get(`http://localhost:5000/reviews/getReview?movieId=${movieId}`);
+		return response.data;
+	} catch (error) {
+		throw error;
+	}
+};

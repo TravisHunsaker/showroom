@@ -28,3 +28,18 @@ export const getReviews = (req, res) => {
 		res.status(500).json({ error: err.message });
 	}
 };
+
+export const getReview = (req, res) => {
+	try {
+		const { movieId } = req.query;
+		
+		const stmt = db.prepare(`
+			SELECT * FROM reviews WHERE movieId = ? LIMIT 1
+			`);
+			
+			const row = stmt.get(movieId);
+		res.status(200).json(row);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+};

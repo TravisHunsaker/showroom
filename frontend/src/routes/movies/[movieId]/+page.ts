@@ -1,9 +1,11 @@
+import { getReview } from '../../../bleh/reviews';
 import { isMovieInWatchlist } from '../../../bleh/watchlist';
 
 export async function load({ params, fetch }) {
 	const movieId = params.movieId;
 
 	const response = await isMovieInWatchlist(movieId);
+	const myReview = await getReview(movieId);
 
 	const res = await fetch(
 		`https://api.themoviedb.org/3/movie/${movieId}?api_key=0f51ece3d9ef17f6ee82430fee1c55cf&language=en-US`
@@ -17,5 +19,5 @@ export async function load({ params, fetch }) {
 	}
 
 	const movie = await res.json();
-	return { movie };
+	return { movie, response, myReview };
 }

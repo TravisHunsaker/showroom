@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
-	import NavBar from '../../../components/NavBar.svelte';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
 
 	export let data;
-	const { movie } = data;
+	const { movie, response, myReview } = data;
 	let open = false;
-	let savedToWatchlist = false;
+	let savedToWatchlist = response.inWatchlist;
 
 	const handleToggleBookmark = async (id: string) => {
 		if (savedToWatchlist) {
@@ -18,7 +17,6 @@
 
 		savedToWatchlist = !savedToWatchlist;
 	};
-	// console.log(movie);
 
 	const handleModal = (state: boolean) => {
 		open = state;
@@ -26,7 +24,9 @@
 </script>
 
 <div class="relative flex h-screen items-center justify-center bg-black p-10 text-white">
-	<NavBar />
+	<div class="absolute top-10 left-10 z-1">
+		<Button on:click={() => history.back()}>Back</Button>
+	</div>
 	<img
 		class="absolute z-0 h-full w-full rounded-xl object-cover opacity-50 blur-xs"
 		src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
@@ -38,11 +38,11 @@
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt={movie.title}
 		/>
-		<div class="relative flex flex-1 rounded-xl border-3 border-white bg-black/50 backdrop-blur-xs">
+		<div class="relative flex flex-1 rounded-xl border-3 border-white bg-black/75 backdrop-blur-xs">
 			<div class="z-1 flex flex-col justify-between p-6">
 				<div class="flex flex-col gap-4">
 					<div class="flex items-center justify-between">
-						<h1 class="text-2xl font-bold">{movie.title}</h1>
+						<h1 class="text-3xl font-bold">{movie.title}</h1>
 						<button on:click={() => handleToggleBookmark(movie.id)}>
 							<img
 								src={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
@@ -59,8 +59,21 @@
 						{/each}
 					</div>
 					<p>{movie.overview}</p>
+					<div></div>
+					{#if myReview.review}
+						<div class="flex space-x-1">
+							{#each Array(myReview.rating).fill(0) as _, i (i)}
+								<img src={'/icons/star.svg'} alt="Star" class="size-10" />
+							{/each}
+						</div>
+						<p>{myReview.review}</p>
+					{:else}
+						<p>No review yet!</p>
+					{/if}
 				</div>
-				<Button on:click={() => handleModal(true)}>Review</Button>
+				<div class="flex justify-end">
+				<Button on:click={() => handleModal(true)} >{myReview ? 'Edit' : 'Review'}</Button>
+			</div>
 			</div>
 		</div>
 	</div>
