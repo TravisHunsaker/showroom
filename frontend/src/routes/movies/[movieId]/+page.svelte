@@ -2,10 +2,11 @@
 	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
+	import { ModalStore } from '../../../stores/ModalStore';
+	$: open = $ModalStore;
 
 	export let data;
 	const { movie, response, myReview } = data;
-	let open = false;
 	let savedToWatchlist = response.inWatchlist;
 
 	const handleToggleBookmark = async (id: string) => {
@@ -19,7 +20,11 @@
 	};
 
 	const handleModal = (state: boolean) => {
-		open = state;
+		ModalStore.set(state);
+	};
+
+	const handleClose = () => {
+		ModalStore.set(false);
 	};
 </script>
 
@@ -72,13 +77,13 @@
 					{/if}
 				</div>
 				<div class="flex justify-end">
-				<Button on:click={() => handleModal(true)} >{myReview ? 'Edit' : 'Review'}</Button>
-			</div>
+					<Button on:click={() => handleModal(true)}>{myReview ? 'Edit' : 'Review'}</Button>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	{#if open}
-		<ReviewModal {movie} {handleModal} />
+		<ReviewModal {movie} {handleClose} />
 	{/if}
 </div>

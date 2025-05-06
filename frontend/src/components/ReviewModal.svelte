@@ -2,8 +2,10 @@
 	import { fade } from 'svelte/transition';
 	import Button from './shared/Button.svelte';
 	import { addReview } from '../bleh/reviews';
-	export let handleModal: (state: boolean) => void;
+	export let handleClose: () => void;
 	export let movie: any;
+
+	console.log(movie)
 
 	let rating = 0;
 	let review = '';
@@ -27,7 +29,7 @@
 
 <div
 	transition:fade={{ duration: 150 }}
-	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold"
+	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold text-white"
 >
 	<div
 		class=" flex h-[500px] w-[500px] flex-col gap-4 rounded-xl border-3 border-white bg-black/75 p-6 opacity-100 backdrop-blur-xs"
@@ -70,7 +72,7 @@
 		></textarea>
 		<div class="flex justify-end gap-4">
 			<Button on:click={handleSave}>Save</Button>
-			<Button on:click={() => handleModal(false)}>Cancel</Button>
+			<Button on:click={handleClose}>Cancel</Button>
 		</div>
 	</div>
 </div>

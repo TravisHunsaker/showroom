@@ -1,9 +1,24 @@
-<script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
 	import NavBar from '../../components/NavBar.svelte';
+	import ReviewModal from '../../components/ReviewModal.svelte';
 	import Button from '../../components/shared/Button.svelte';
+	import { ModalStore } from '../../stores/ModalStore';
+
+	$: open = $ModalStore;
 
 	export let data;
+	let selectedMovie = null
 	const reviews = data?.reviews ?? [];
+
+	const handleModal = (movie: any) => {
+		selectedMovie = movie
+		ModalStore.set(true);
+	};
+
+	const handleClose = () => {
+		ModalStore.set(false);
+	};
 </script>
 
 <div class="relative flex h-screen w-full justify-center gap-10 overflow-hidden bg-black p-10">
@@ -13,8 +28,8 @@
 		<div class="text-4xl text-white">Reviews</div>
 		<div class="flex flex-col gap-10">
 			{#each reviews as review}
-				<a
-					href={`/movies/${review.movie.id}`}
+				<button
+					on:click={(e) => {e.stopPropagation(); goto(`/movies/${review.movie.id}`)}}
 					class="z-1 transition ease-in-out hover:scale-[1.05]"
 				>
 					<div
@@ -26,7 +41,7 @@
 							alt=""
 						/>
 						<div class="flex w-full flex-col justify-between p-6 text-white">
-							<div class="">
+							<div class="flex flex-col justify-start">
 								<div class="item-center flex justify-between">
 									<div class="truncate text-3xl text-ellipsis">{review.movie.title}</div>
 									<div class="flex space-x-1">
@@ -35,15 +50,18 @@
 										{/each}
 									</div>
 								</div>
-								<div class="text-xl">{review.review.review}</div>
+								<div class="text-xl w-min">{review.review.review}</div>
 							</div>
 							<div class="flex items-center justify-end gap-4">
-								<Button>Edit</Button>
+								<Button on:click={(e) => {e.stopPropagation();handleModal(review.movie)}}>Edit</Button>
 								<Button>Delete</Button>
 							</div>
 						</div>
 					</div>
-				</a>
+				</button>
+				{#if open && selectedMovie === review.movie}
+					<ReviewModal movie={selectedMovie} {handleClose} />
+				{/if}
 			{/each}
 		</div>
 	</div>
