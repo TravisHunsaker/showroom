@@ -8,11 +8,13 @@
 	$: open = $ModalStore;
 
 	export let data;
-	let selectedMovie = null
+	let selectedMovie = {}
+	let myReview = {}
 	const reviews = data?.reviews ?? [];
 
-	const handleModal = (movie: any) => {
+	const handleModal = (movie: any, review: any) => {
 		selectedMovie = movie
+		myReview = review
 		ModalStore.set(true);
 	};
 
@@ -53,16 +55,16 @@
 								<div class="text-xl w-min">{review.review.review}</div>
 							</div>
 							<div class="flex items-center justify-end gap-4">
-								<Button on:click={(e) => {e.stopPropagation();handleModal(review.movie)}}>Edit</Button>
+								<Button on:click={(e) => {e.stopPropagation(); handleModal(review.movie, review.review)}}>Edit</Button>
 								<Button>Delete</Button>
 							</div>
 						</div>
 					</div>
 				</button>
-				{#if open && selectedMovie === review.movie}
-					<ReviewModal movie={selectedMovie} {handleClose} />
-				{/if}
-			{/each}
-		</div>
+				{/each}
+			</div>
+			{#if open}
+				<ReviewModal movie={selectedMovie} {myReview} {handleClose} />
+			{/if}
 	</div>
 </div>

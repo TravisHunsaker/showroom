@@ -2,15 +2,24 @@
 	import { fade } from 'svelte/transition';
 	import Button from './shared/Button.svelte';
 	import { addReview } from '../bleh/reviews';
+	import { onMount } from 'svelte';
 	export let handleClose: () => void;
 	export let movie: any;
+	export let myReview: any | null | undefined = null;
+
+	let rating = 0;
+	let review =  '';
+	const maxStars = 5;
+	const date = new Date().toDateString();
 
 	console.log(movie)
 
-	let rating = 0;
-	let review = '';
-	const maxStars = 5;
-	const date = new Date().toDateString();
+	onMount(() => {
+		if (myReview) {
+			rating = myReview.rating;
+			review = myReview.review;
+		}
+	});
 
 	const setRating = (index: number) => {
 		rating = index;
