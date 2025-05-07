@@ -1,25 +1,26 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto,  invalidateAll } from '$app/navigation';
 	import NavBar from '../../components/NavBar.svelte';
 	import ReviewModal from '../../components/ReviewModal.svelte';
 	import Button from '../../components/shared/Button.svelte';
 	import { ModalStore } from '../../stores/ModalStore';
 
 	$: open = $ModalStore;
+	$: reviews = data?.reviews ?? [];
 
 	export let data;
-	let selectedMovie = {}
-	let myReview = {}
-	const reviews = data?.reviews ?? [];
+	let selectedMovie = {};
+	let myReview = {};
 
 	const handleModal = (movie: any, review: any) => {
-		selectedMovie = movie
-		myReview = review
+		selectedMovie = movie;
+		myReview = review;
 		ModalStore.set(true);
 	};
 
-	const handleClose = () => {
+	const handleClose = async () => {
 		ModalStore.set(false);
+		await invalidateAll()
 	};
 </script>
 
@@ -31,7 +32,10 @@
 		<div class="flex flex-col gap-10">
 			{#each reviews as review}
 				<button
-					on:click={(e) => {e.stopPropagation(); goto(`/movies/${review.movie.id}`)}}
+					on:click={(e) => {
+						e.stopPropagation();
+						goto(`/movies/${review.movie.id}`);
+					}}
 					class="z-1 transition ease-in-out hover:scale-[1.05]"
 				>
 					<div
@@ -52,19 +56,24 @@
 										{/each}
 									</div>
 								</div>
-								<div class="text-xl w-min">{review.review.review}</div>
+								<div class="flex justify-start text-xl">{review.review.review}</div>
 							</div>
 							<div class="flex items-center justify-end gap-4">
-								<Button on:click={(e) => {e.stopPropagation(); handleModal(review.movie, review.review)}}>Edit</Button>
+								<Button
+									on:click={(e) => {
+										e.stopPropagation();
+										handleModal(review.movie, review.review);
+									}}>Edit</Button
+								>
 								<Button>Delete</Button>
 							</div>
 						</div>
 					</div>
 				</button>
-				{/each}
-			</div>
-			{#if open}
-				<ReviewModal movie={selectedMovie} {myReview} {handleClose} />
-			{/if}
+			{/each}
+		</div>
+		{#if open}
+			<ReviewModal movie={selectedMovie} {myReview} {handleClose} />
+		{/if}
 	</div>
 </div>

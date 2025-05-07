@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Button from './shared/Button.svelte';
-	import { addReview } from '../bleh/reviews';
+	import { addReview, updateReview } from '../bleh/reviews';
 	import { onMount } from 'svelte';
 	export let handleClose: () => void;
 	export let movie: any;
 	export let myReview: any | null | undefined = null;
 
 	let rating = 0;
-	let review =  '';
+	let review = '';
 	const maxStars = 5;
 	const date = new Date().toDateString();
 
-	console.log(movie)
+	console.log(movie);
 
 	onMount(() => {
 		if (myReview) {
@@ -28,7 +28,12 @@
 	const handleSave = async () => {
 		const reviewData = { movieId: movie.id, rating, review };
 		try {
-			await addReview(reviewData);
+			if (myReview) {
+				await updateReview(reviewData);
+			} else {
+				await addReview(reviewData);
+			}
+			handleClose()
 			console.log('Review saved successfully');
 		} catch (error) {
 			console.error('Error saving review:', error);

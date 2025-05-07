@@ -20,6 +20,29 @@ export const addReview = async (req, res) => {
 	}
 }
 
+export const updateReview = async (req, res) => {
+	try {
+		const { movieId, rating, review } = req.body;
+
+		const stmt = db.prepare(`
+			UPDATE reviews
+			SET rating = ?, review = ?
+			WHERE movieId = ?
+		`);
+
+		const info = stmt.run(rating, review, movieId);
+
+		if (info.changes === 0) {
+			return res.status(404).json({ error: 'Review not found' });
+		}
+
+		res.status(200).json({ message: 'Review updated!' });
+	} catch (err) {
+		console.error("Unexpected server error:", err);
+		res.status(500).json({ error: "Internal server error" });
+	}
+};
+
 export const getReviews = (req, res) => {
 	try {
 		const rows = db.prepare('SELECT * FROM reviews').all();
