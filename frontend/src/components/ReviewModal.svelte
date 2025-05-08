@@ -3,13 +3,13 @@
 	import Button from './shared/Button.svelte';
 	import { addReview, updateReview } from '../bleh/reviews';
 	import { onMount } from 'svelte';
+	import Rating from './shared/Rating.svelte';
 	export let handleClose: () => void;
 	export let movie: any;
 	export let myReview: any | null | undefined = null;
 
 	let rating = 0;
 	let review = '';
-	const maxStars = 5;
 	const date = new Date().toDateString();
 
 	console.log(movie);
@@ -58,19 +58,7 @@
 				<div class="text-2xl">{movie.title}</div>
 				<div>
 					<div>Rate</div>
-					<div class="flex space-x-1">
-						{#each Array(maxStars).fill(0) as _, i (i)}
-							<button on:click={() => setRating(i + 1)}>
-								<img
-									src={'/icons/star.svg'}
-									alt="Star"
-									class="size-10 cursor-pointer transition-transform hover:scale-110"
-									class:opacity-100={i < rating}
-									class:opacity-30={i >= rating}
-								/>
-							</button>
-						{/each}
-					</div>
+					<Rating {rating} max={5} onRate={(val: number) => setRating(val)} />
 				</div>
 				<div>
 					<div>Date</div>

@@ -1,7 +1,7 @@
 <script>
-	import NavBar from "../NavBar.svelte";
+	import NavBar from '../NavBar.svelte';
 
-    export let title
+	export let title;
 </script>
 
 <div class="relative flex w-full justify-center gap-10 overflow-hidden bg-black p-10">

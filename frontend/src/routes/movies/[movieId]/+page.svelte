@@ -3,6 +3,7 @@
 	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
+	import Rating from '../../../components/shared/Rating.svelte';
 	import { ModalStore } from '../../../stores/ModalStore';
 
 	export let data;
@@ -68,13 +69,8 @@
 						{/each}
 					</div>
 					<p>{movie.overview}</p>
-					<div></div>
 					{#if myReview.review}
-						<div class="flex space-x-1">
-							{#each Array(myReview.rating).fill(0) as _, i (i)}
-								<img src={'/icons/star.svg'} alt="Star" class="size-10" />
-							{/each}
-						</div>
+					<Rating rating={myReview.rating} max={myReview.rating} readonly/>
 						<p>{myReview.review}</p>
 					{:else}
 						<p>No review yet!</p>
