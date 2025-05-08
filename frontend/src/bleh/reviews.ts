@@ -46,3 +46,14 @@ export const getReview = async (movieId: string) => {
 		throw error;
 	}
 };
+
+export const removeReview = async (reviewId: string) => {
+	try {
+		const response = await axios.delete(
+			`http://localhost:5000/reviews/removeReview?reviewId=${reviewId}`
+		);
+		return response.data;
+	} catch (error) {
+		throw error;
+	}
+};

@@ -20,6 +20,24 @@ export const addReview = async (req, res) => {
 	}
 }
 
+export const removeReview = async (req, res) => {
+	try {
+		const { reviewId } = req.query;
+
+		const stmt = db.prepare(`DELETE FROM reviews WHERE id = ?`);
+		const result = stmt.run(reviewId);
+
+		if (result.changes === 0) {
+			return res.status(404).json({ message: "Review not found" });
+		}
+
+		res.status(200).json({ message: "Review deleted successfully" });
+	} catch (err) {
+		console.error("Error deleting review:", err);
+		res.status(500).json({ error: "Internal server error" });
+	}
+};
+
 export const updateReview = async (req, res) => {
 	try {
 		const { movieId, rating, review } = req.body;

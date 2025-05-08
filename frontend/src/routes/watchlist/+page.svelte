@@ -5,7 +5,7 @@
 	const movies = data?.movies ?? [];
 </script>
 
-<div class="relative flex h-screen w-full justify-center gap-10 overflow-hidden bg-black p-10">
+<div class="relative flex w-full justify-center gap-10 overflow-hidden bg-black p-10">
 	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
 	<NavBar />
 	<div class="z-1 flex w-3/4 flex-col gap-10">

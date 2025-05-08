@@ -33,7 +33,7 @@
 			} else {
 				await addReview(reviewData);
 			}
-			handleClose()
+			handleClose();
 			console.log('Review saved successfully');
 		} catch (error) {
 			console.error('Error saving review:', error);

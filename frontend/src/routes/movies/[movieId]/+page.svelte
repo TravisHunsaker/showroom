@@ -1,13 +1,16 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
 	import { ModalStore } from '../../../stores/ModalStore';
-	$: open = $ModalStore;
 
 	export let data;
-	const { movie, response, myReview } = data;
+	const { movie, response } = data;
 	let savedToWatchlist = response.inWatchlist;
+
+	$: open = $ModalStore;
+	$: myReview = data.myReview;
 
 	const handleToggleBookmark = async (id: string) => {
 		if (savedToWatchlist) {
@@ -19,12 +22,13 @@
 		savedToWatchlist = !savedToWatchlist;
 	};
 
-	const handleModal = (state: boolean) => {
-		ModalStore.set(state);
+	const handleOpen = async () => {
+		ModalStore.set(true);
 	};
 
-	const handleClose = () => {
+	const handleClose = async () => {
 		ModalStore.set(false);
+		await invalidateAll();
 	};
 </script>
 
@@ -77,13 +81,13 @@
 					{/if}
 				</div>
 				<div class="flex justify-end">
-					<Button on:click={() => handleModal(true)}>{myReview ? 'Edit' : 'Review'}</Button>
+					<Button on:click={handleOpen}>{myReview ? 'Edit' : 'Review'}</Button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	{#if open}
-		<ReviewModal {movie} {handleClose} />
+		<ReviewModal {movie} {myReview} {handleClose} />
 	{/if}
 </div>

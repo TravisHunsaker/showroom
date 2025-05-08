@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { goto,  invalidateAll } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
+	import { removeReview } from '../../bleh/reviews';
 	import NavBar from '../../components/NavBar.svelte';
 	import ReviewModal from '../../components/ReviewModal.svelte';
 	import Button from '../../components/shared/Button.svelte';
@@ -20,11 +21,16 @@
 
 	const handleClose = async () => {
 		ModalStore.set(false);
-		await invalidateAll()
+		await invalidateAll();
+	};
+
+	const handleRemoveReview = async (reviewId: string) => {
+		await removeReview(reviewId);
+		await invalidateAll();
 	};
 </script>
 
-<div class="relative flex h-screen w-full justify-center gap-10 overflow-hidden bg-black p-10">
+<div class="relative flex  w-full justify-center gap-10 overflow-hidden bg-black p-10">
 	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
 	<NavBar />
 	<div class="z-1 flex w-3/4 flex-col gap-10">
@@ -65,7 +71,12 @@
 										handleModal(review.movie, review.review);
 									}}>Edit</Button
 								>
-								<Button>Delete</Button>
+								<Button
+									on:click={(e) => {
+										e.stopPropagation();
+										handleRemoveReview(review.review.id);
+									}}>Remove</Button
+								>
 							</div>
 						</div>
 					</div>
