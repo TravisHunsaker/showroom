@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto, invalidateAll } from '$app/navigation';
 	import { removeReview } from '../../bleh/reviews';
-	import NavBar from '../../components/NavBar.svelte';
 	import ReviewModal from '../../components/ReviewModal.svelte';
 	import Button from '../../components/shared/Button.svelte';
+	import Page from '../../components/shared/Page.svelte';
 	import { ModalStore } from '../../stores/ModalStore';
 
 	$: open = $ModalStore;
@@ -30,12 +30,8 @@
 	};
 </script>
 
-<div class="relative flex  w-full justify-center gap-10 overflow-hidden bg-black p-10">
-	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
-	<NavBar />
-	<div class="z-1 flex w-3/4 flex-col gap-10">
-		<div class="text-4xl text-white">Reviews</div>
-		<div class="flex flex-col gap-10">
+<Page title='Reviews'>
+	<div class="flex flex-col gap-10">
 			{#each reviews as review}
 				<button
 					on:click={(e) => {
@@ -86,5 +82,5 @@
 		{#if open}
 			<ReviewModal movie={selectedMovie} {myReview} {handleClose} />
 		{/if}
-	</div>
-</div>
+</Page>
+
