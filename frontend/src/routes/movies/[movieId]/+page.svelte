@@ -70,7 +70,7 @@
 					</div>
 					<p>{movie.overview}</p>
 					{#if myReview.review}
-					<Rating rating={myReview.rating} max={myReview.rating} readonly/>
+						<Rating rating={myReview.rating} max={myReview.rating} readonly />
 						<p>{myReview.review}</p>
 					{:else}
 						<p>No review yet!</p>

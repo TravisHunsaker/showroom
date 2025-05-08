@@ -4,6 +4,7 @@
 	import { addReview, updateReview } from '../bleh/reviews';
 	import { onMount } from 'svelte';
 	import Rating from './shared/Rating.svelte';
+
 	export let handleClose: () => void;
 	export let movie: any;
 	export let myReview: any | null | undefined = null;
