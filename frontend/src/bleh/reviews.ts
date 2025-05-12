@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const addReview = async (reviewData: {
-	movieId: string;
+	movieId: number;
 	rating: number;
 	review: string;
 }) => {
@@ -15,7 +15,7 @@ export const addReview = async (reviewData: {
 };
 
 export const updateReview = async (reviewData: {
-	movieId: string;
+	movieId: number;
 	rating: number;
 	review: string;
 }) => {

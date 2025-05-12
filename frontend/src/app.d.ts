@@ -7,7 +7,34 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+		interface TReview {
+			id: string;
+			movieId: number;
+			review: string;
+			rating: number;
+		}
+
+		interface TReviewWithMovie {
+			id: string;
+			review: TReview;
+			movie: TMovie;
+		}
+
+		interface TGenre {
+			id: number;
+			name: string;
+		}
+
+		interface TMovie {
+			id: number;
+			title: string;
+			overview: string;
+			backdrop_path: string;
+			poster_path: string;
+			release_date: string;
+			genre: TGenre[];
+		}
 	}
 }
 
-export {};
+export { TReview, TMovie, TReviewWithMovie };

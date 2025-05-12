@@ -8,13 +8,20 @@
 	import { ModalStore } from '../../stores/ModalStore';
 
 	$: open = $ModalStore;
-	$: reviews = data?.reviews ?? [];
+	$: reviews = (data?.reviews as App.TReviewWithMovie[]) ?? [];
+
+	console.log(reviews);
 
 	export let data;
-	let selectedMovie = {};
-	let myReview = {};
+	let selectedMovie = {} as App.TMovie;
+	let myReview: App.TReview = {
+		id: '',
+		movieId: 0,
+		rating: 0,
+		review: ''
+	};
 
-	const handleModal = (movie: any, review: any) => {
+	const handleModal = (movie: App.TMovie, review: App.TReview) => {
 		selectedMovie = movie;
 		myReview = review;
 		ModalStore.set(true);
@@ -33,11 +40,11 @@
 
 <Page title="Reviews">
 	<div class="flex flex-col gap-10">
-		{#each reviews as review}
+		{#each reviews as { review, movie }: App.TReviewWithMovie}
 			<button
 				on:click={(e) => {
 					e.stopPropagation();
-					goto(`/movies/${review.movie.id}`);
+					goto(`/movies/${movie.id}`);
 				}}
 				class="z-1 transition ease-in-out hover:scale-[1.05]"
 			>
@@ -46,28 +53,28 @@
 				>
 					<img
 						class="rounded-md rounded-tr-none rounded-br-none border-r-3 border-white object-contain backdrop-blur-xs"
-						src={`https://image.tmdb.org/t/p/w500${review.movie.poster_path}`}
+						src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 						alt=""
 					/>
 					<div class="flex w-full flex-col justify-between p-6 text-white">
 						<div class="flex flex-col justify-start">
 							<div class="item-center flex justify-between">
-								<div class="truncate text-3xl text-ellipsis">{review.movie.title}</div>
-								<Rating rating={review.review.rating} max={review.review.rating} readonly />
+								<div class="truncate text-3xl text-ellipsis">{movie.title}</div>
+								<Rating rating={review.rating} max={review.rating} readonly />
 							</div>
-							<div class="flex justify-start text-xl">{review.review.review}</div>
+							<div class="flex justify-start text-xl">{review.review}</div>
 						</div>
 						<div class="flex items-center justify-end gap-4">
 							<Button
 								on:click={(e) => {
 									e.stopPropagation();
-									handleModal(review.movie, review.review);
+									handleModal(movie, review);
 								}}>Edit</Button
 							>
 							<Button
 								on:click={(e) => {
 									e.stopPropagation();
-									handleRemoveReview(review.review.id);
+									handleRemoveReview(review.id);
 								}}>Remove</Button
 							>
 						</div>

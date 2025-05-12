@@ -10,7 +10,7 @@ export async function load() {
 		const myReviews = await getReviews();
 
 		// 2. Get unique movie IDs
-		const uniqueMovieIds = [...new Set(myReviews.map((r: any) => r.movieId))];
+		const uniqueMovieIds = [...new Set(myReviews.map((r: App.TReview) => r.movieId))];
 
 		// 3. Fetch movie details for each ID
 		const movieFetches = uniqueMovieIds.map(async (id) => {
@@ -28,9 +28,9 @@ export async function load() {
 		const moviesArray = await Promise.all(movieFetches);
 
 		// 4. Create a movie map: { movieId: movieData }
-		const movies = {};
+		const movies: Record<string, App.TMovie> = {};
 		for (const { id, data } of moviesArray) {
-			if (data) {
+			if (typeof id === 'number' && data) {
 				movies[id] = data as any;
 			}
 		}

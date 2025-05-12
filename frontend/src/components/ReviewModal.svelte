@@ -6,8 +6,8 @@
 	import Rating from './shared/Rating.svelte';
 
 	export let handleClose: () => void;
-	export let movie: any;
-	export let myReview: any | null | undefined = null;
+	export let movie: App.TMovie;
+	export let myReview: App.TReview | null | undefined = null;
 
 	let rating = 0;
 	let review = '';

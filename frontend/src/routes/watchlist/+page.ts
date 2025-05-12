@@ -10,7 +10,7 @@ export async function load() {
 		const watchlist = await getWatchlist();
 
 		// 2. Extract unique movie IDs
-		const uniqueMovieIds = [...new Set(watchlist.map((entry: any) => entry.movieId))];
+		const uniqueMovieIds = [...new Set(watchlist.map((entry: App.TReview) => entry.movieId))];
 
 		// 3. Fetch movie details for each ID
 		const movieFetches = uniqueMovieIds.map(async (id) => {
@@ -19,8 +19,8 @@ export async function load() {
 					`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
 				);
 				return response.data;
-			} catch (error: any) {
-				console.error(`Failed to fetch movie ${id}:`, error.message);
+			} catch (error) {
+				console.error(`Failed to fetch movie ${id}:`, error);
 				return null;
 			}
 		});
