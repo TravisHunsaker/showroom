@@ -6,7 +6,7 @@
 
 <Page title="Movies">
 	<div class="flex flex-wrap justify-between gap-10">
-		{#each data.items.results as movie}
+		{#each data.movies.results as movie}
 			<MovieCard {movie} />
 		{/each}
 	</div>

@@ -8,8 +8,6 @@
 		{ path: '/reviews', value: 'reviews', text: 'Reviews', id: '3' }
 	];
 
-	$: currentTab = page.url.pathname === '/' ? 'movies' : page.url.pathname.slice(1);
-
 	const changeCurrentTab = (path: string) => {
 		goto(path);
 	};
@@ -20,13 +18,11 @@
 >
 	{#each tabs as tab (tab.id)}
 		<div class="flex items-center gap-4">
-			{#if currentTab === tab.value}
-				<div class="h-[36px] w-[3px] bg-white"></div>
-			{/if}
+			
 			<a
 				href={tab.path}
 				on:click|preventDefault={() => changeCurrentTab(tab.path)}
-				class="focus:outline-none"
+				class="relative after:absolute after:bg-white after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
 			>
 				{tab.text}
 			</a>

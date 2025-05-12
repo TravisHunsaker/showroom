@@ -1,23 +1,20 @@
+import { getMovie } from '../../../bleh/movies';
 import { getReview } from '../../../bleh/reviews';
 import { isMovieInWatchlist } from '../../../bleh/watchlist';
 
-export async function load({ params, fetch }) {
+export async function load({ params }) {
 	const movieId = params.movieId;
 
 	const response = await isMovieInWatchlist(movieId);
 	const myReview = await getReview(movieId);
+	const movie = await getMovie(movieId);
 
-	const res = await fetch(
-		`https://api.themoviedb.org/3/movie/${movieId}?api_key=0f51ece3d9ef17f6ee82430fee1c55cf&language=en-US`
-	);
-
-	if (!res.ok) {
+	if (!movie) {
 		return {
-			status: res.status,
+			status: 500,
 			error: new Error('Could not fetch movie')
 		};
 	}
 
-	const movie = await res.json();
 	return { movie, response, myReview };
 }
