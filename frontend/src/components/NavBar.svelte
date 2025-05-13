@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/state';
 
 	const tabs = [
 		{ path: '/', value: 'movies', text: 'Movies', id: '1' },
@@ -14,15 +13,15 @@
 </script>
 
 <div
-	class="fixed z-1 flex h-full w-full flex-col items-start justify-center gap-6 pl-10 text-xl font-bold text-white"
+	class="fixed z-1 flex h-full w-full items-start justify-end gap-6 pl-10 font-bold text-white lg:flex-col lg:justify-center"
 >
+	<div class="text-2xl">SHOWROOM</div>
 	{#each tabs as tab (tab.id)}
-		<div class="flex items-center gap-4">
-			
+		<div class="flex items-center gap-4 text-xl">
 			<a
 				href={tab.path}
 				on:click|preventDefault={() => changeCurrentTab(tab.path)}
-				class="relative after:absolute after:bg-white after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
+				class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
 			>
 				{tab.text}
 			</a>

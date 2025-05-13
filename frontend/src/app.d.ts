@@ -2,13 +2,9 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface PageState {}
-		// interface Platform {}
 		interface TReview {
 			id: string;
+			createdAt: string;
 			movieId: number;
 			review: string;
 			rating: number;
@@ -25,6 +21,12 @@ declare global {
 			name: string;
 		}
 
+		interface TMovieDetailsData {
+			movie: TMovie;
+			response: any;
+			myReview?: TReview;
+		}
+
 		interface TMovie {
 			id: number;
 			title: string;
@@ -32,7 +34,7 @@ declare global {
 			backdrop_path: string;
 			poster_path: string;
 			release_date: string;
-			genre: TGenre[];
+			genres: TGenre[];
 		}
 	}
 }

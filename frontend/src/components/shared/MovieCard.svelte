@@ -1,5 +1,7 @@
 <script>
 	export let movie;
+
+	const year = movie.release_date.split('-')[0];
 </script>
 
 <a href={`/movies/${movie.id}`} class="z-1 transition ease-in-out hover:scale-[1.05]">
@@ -9,9 +11,9 @@
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt=""
 		/>
-		<div class="p-2">
+		<div class="flex items-center gap-1 p-2 font-bold">
 			<div class="truncate text-ellipsis">{movie.title}</div>
-			<div class="h-full">Released - {movie.release_date}</div>
+			<div class="h-full">({year})</div>
 		</div>
 	</div>
 </a>

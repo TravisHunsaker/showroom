@@ -1,27 +1,17 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
+	import MovieDetailsSection from '../../../components/movieDetails/MovieDetailsSection.svelte';
+	import ReviewSection from '../../../components/movieDetails/ReviewSection.svelte';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
-	import Rating from '../../../components/shared/Rating.svelte';
 	import { ModalStore } from '../../../stores/ModalStore';
 
-	export let data;
-	const { movie, response } = data;
+	export let data: App.TMovieDetailsData;
+	const { movie, response, myReview } = data;
+
 	let savedToWatchlist = response.inWatchlist;
 
 	$: open = $ModalStore;
-	$: myReview = data.myReview;
-
-	const handleToggleBookmark = async (id: string) => {
-		if (savedToWatchlist) {
-			await removeFromWatchlist(id);
-		} else {
-			await addToWatchlist(id);
-		}
-
-		savedToWatchlist = !savedToWatchlist;
-	};
 
 	const handleOpen = async () => {
 		ModalStore.set(true);
@@ -51,29 +41,12 @@
 		<div class="relative flex flex-1 rounded-xl border-3 border-white bg-black/75 backdrop-blur-xs">
 			<div class="z-1 flex flex-col justify-between p-6">
 				<div class="flex flex-col gap-4">
-					<div class="flex items-center justify-between">
-						<h1 class="text-3xl font-bold">{movie.title}</h1>
-						<button on:click={() => handleToggleBookmark(movie.id)}>
-							<img
-								src={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
-								alt=""
-								class="size-9"
-							/>
-						</button>
-					</div>
-					<div class="flex gap-2">
-						{#each movie.genres as genre}
-							<div class="rounded-full bg-white/25 px-4 py-1 font-bold backdrop-blur-xs">
-								{genre.name}
-							</div>
-						{/each}
-					</div>
-					<p>{movie.overview}</p>
-					{#if myReview.review}
-						<Rating rating={myReview.rating} max={myReview.rating} readonly />
-						<p>{myReview.review}</p>
+					<MovieDetailsSection {movie} {savedToWatchlist} />
+					
+					{#if myReview}
+						<ReviewSection {myReview} />
 					{:else}
-						<p>No review yet!</p>
+						<p class="text-[#818182]">No review yet!</p>
 					{/if}
 				</div>
 				<div class="flex justify-end">

@@ -12,7 +12,7 @@ export const isMovieInWatchlist = async (movieId: string) => {
 	}
 };
 
-export const addToWatchlist = async (movieId: string) => {
+export const addToWatchlist = async (movieId: number) => {
 	try {
 		const response = await axios.post(`http://localhost:5000/watchlist/addToWatchlist`, {
 			movieId
@@ -24,7 +24,7 @@ export const addToWatchlist = async (movieId: string) => {
 	}
 };
 
-export const removeFromWatchlist = async (movieId: string) => {
+export const removeFromWatchlist = async (movieId: number) => {
 	try {
 		const response = await axios.post(
 			`http://localhost:5000/watchlist/removeFromWatchlist`,
