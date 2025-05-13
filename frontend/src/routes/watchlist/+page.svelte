@@ -7,7 +7,7 @@
 </script>
 
 <Page title="Watchlist">
-	<div class="flex flex-wrap gap-10">
+	<div class="grid grid-cols-2 gap-10 sm:grid-cols-3 xl:grid-cols-4">
 		{#each movies as movie}
 			<MovieCard {movie} />
 		{/each}

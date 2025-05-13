@@ -5,7 +5,7 @@
 </script>
 
 <Page title="Movies">
-	<div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-10">
+	<div class="grid grid-cols-2 gap-10 sm:grid-cols-3 xl:grid-cols-4">
 		{#each data.movies.results as movie}
 			<MovieCard {movie} />
 		{/each}

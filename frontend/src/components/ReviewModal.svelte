@@ -75,7 +75,7 @@
 		></textarea>
 		<div class="flex justify-end gap-4">
 			<Button on:click={handleSave}>Save</Button>
-			<Button on:click={handleClose}>Cancel</Button>
+			<Button on:click={handleClose} outlined>Cancel</Button>
 		</div>
 	</div>
 </div>

@@ -11,7 +11,7 @@
 	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
 
 	<div class="flex justify-center">
-		<div class="z-1 flex w-full lg:w-3/4 flex-col gap-10">
+		<div class="z-1 flex w-full flex-col gap-10 lg:w-3/4">
 			<div class="text-4xl text-white">{title}</div>
 			<slot></slot>
 		</div>

@@ -1,18 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-
-	const tabs = [
-		{ path: '/', value: 'movies', text: 'Movies', id: '1' },
-		{ path: '/watchlist', value: 'watchlist', text: 'Watchlist', id: '2' },
-		{ path: '/reviews', value: 'reviews', text: 'Reviews', id: '3' }
-	];
-
-	const changeCurrentTab = (path: string) => {
-		goto(path);
-	};
-
 	import { onMount } from 'svelte';
-	let scrolled = false;
 
 	onMount(() => {
 		const handleScroll = () => {
@@ -22,6 +10,17 @@
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
+
+	let scrolled = false;
+	const changeCurrentTab = (path: string) => {
+		goto(path);
+	};
+
+	const tabs = [
+		{ path: '/', value: 'movies', text: 'Movies', id: '1' },
+		{ path: '/watchlist', value: 'watchlist', text: 'Watchlist', id: '2' },
+		{ path: '/reviews', value: 'reviews', text: 'Reviews', id: '3' }
+	];
 </script>
 
 <div class="fixed top-0 z-2 flex w-full gap-6 p-10 font-bold text-white">
