@@ -9,7 +9,7 @@
 		class="flex min-h-full w-full flex-col gap-2 rounded-md border-3 border-white bg-white shadow-2xl"
 	>
 		<img
-			class="rounded-md rounded-b-none object-contain backdrop-blur-xs"
+			class="rounded-md rounded-b-none object-contain"
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt=""
 		/>

@@ -50,7 +50,7 @@
 				class="z-1 transition ease-in-out hover:scale-[1.05]"
 			>
 				<div
-					class="flex h-[150px] w-full overflow-hidden rounded-2xl border-3 border-white bg-black/75 shadow-2xl backdrop-blur-xs lg:h-[250px]"
+					class="flex h-[150px] w-full overflow-hidden rounded-2xl border3 shadow-2xl blurredBlack lg:h-[250px]"
 				>
 					<img
 						class="rounded-md rounded-tr-none rounded-br-none border-r-3 border-white object-contain backdrop-blur-xs"

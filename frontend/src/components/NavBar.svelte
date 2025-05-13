@@ -25,14 +25,13 @@
 
 <div class="fixed top-0 z-2 flex w-full gap-6 p-10 font-bold text-white">
 	<div
-		class={`flex w-full items-center justify-between rounded-xl px-6 py-4 transition-all duration-300 ease-in-out ${
+		class={`flex w-full  items-center justify-between rounded-xl px-6 py-4 transition-all duration-300 ease-in-out ${
 			scrolled ? 'bg-white/25 backdrop-blur-sm' : ''
 		}`}
 	>
 		<div class="text-2xl">SHOWROOM</div>
-		<div class="flex gap-6">
+		<div class="flex gap-6 text-xl items-center">
 			{#each tabs as tab (tab.id)}
-				<div class="flex items-center gap-4 text-xl">
 					<a
 						href={tab.path}
 						on:click|preventDefault={() => changeCurrentTab(tab.path)}
@@ -40,7 +39,6 @@
 					>
 						{tab.text}
 					</a>
-				</div>
 			{/each}
 		</div>
 	</div>
