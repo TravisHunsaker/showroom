@@ -5,9 +5,9 @@
 </script>
 
 <a href={`/movies/${movie.id}`} class="z-1 transition ease-in-out hover:scale-[1.05]">
-	<div class="flex w-[300px] flex-col gap-2 rounded-md border-3 border-white bg-white shadow-2xl">
+	<div class="flex w-full flex-col gap-2 rounded-md border-3 border-white bg-white shadow-2xl min-h-full">
 		<img
-			class="h-[441px] rounded-md rounded-b-none object-contain backdrop-blur-xs"
+			class="rounded-md rounded-b-none object-contain backdrop-blur-xs"
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt=""
 		/>

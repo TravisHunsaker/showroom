@@ -42,7 +42,7 @@
 			<div class="z-1 flex flex-col justify-between p-6">
 				<div class="flex flex-col gap-4">
 					<MovieDetailsSection {movie} {savedToWatchlist} />
-					
+
 					{#if myReview}
 						<ReviewSection {myReview} />
 					{:else}
