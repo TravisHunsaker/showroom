@@ -30,15 +30,15 @@
 		}`}
 	>
 		<div class="text-2xl">SHOWROOM</div>
-		<div class="flex gap-6 text-xl items-center">
+		<div class="flex items-center gap-6 text-xl">
 			{#each tabs as tab (tab.id)}
-					<a
-						href={tab.path}
-						on:click|preventDefault={() => changeCurrentTab(tab.path)}
-						class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
-					>
-						{tab.text}
-					</a>
+				<a
+					href={tab.path}
+					on:click|preventDefault={() => changeCurrentTab(tab.path)}
+					class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+				>
+					{tab.text}
+				</a>
 			{/each}
 		</div>
 	</div>

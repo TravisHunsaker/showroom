@@ -7,7 +7,7 @@ export async function load({ params }) {
 
 	const response = await isMovieInWatchlist(movieId);
 	const myReview = await getReview(movieId);
-	const movie = await getMovie(movieId);
+	const movie = await getMovie(+movieId);
 
 	if (!movie) {
 		return {

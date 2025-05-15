@@ -1,7 +1,5 @@
-import { getMovies } from '../bleh/movies.js';
+import { redirect } from '@sveltejs/kit';
 
-export async function load() {
-	const movies = await getMovies();
-
-	return { movies };
+export function load() {
+	throw redirect(307, '/movies/page/1');
 }

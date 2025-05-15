@@ -47,7 +47,7 @@
 	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold text-white"
 >
 	<div
-		class=" flex h-[500px] w-[500px] flex-col gap-4 rounded-xl border3 p-6 opacity-100 blurredBlack"
+		class=" border3 blurredBlack flex h-[500px] w-[500px] flex-col gap-4 rounded-xl p-6 opacity-100"
 	>
 		<div class="flex gap-4">
 			<img

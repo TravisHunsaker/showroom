@@ -23,9 +23,10 @@ export const getMovie = async (req, res) => {
 };
 
 export const getMovies = async (req, res) => {
+	const { pageNumber } = req.query;
 	try {
         const tmdbRes = await fetch(
-            `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`
+            `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${pageNumber}`
         );
 
 		if (!tmdbRes.ok) {
@@ -33,6 +34,7 @@ export const getMovies = async (req, res) => {
 		}
 
 		const movieData = await tmdbRes.json();
+		console.log(movieData)
 		res.status(200).json(movieData); 
 	} catch (err) {
 		res.status(500).json({ error: err.message });

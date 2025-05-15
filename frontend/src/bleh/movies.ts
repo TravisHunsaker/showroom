@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getMovie = async (movieId: string) => {
+export const getMovie = async (movieId: number) => {
 	try {
 		const response = await axios.get(`http://localhost:5000/movies/getMovie?movieId=${movieId}`);
 		return response.data;
@@ -9,9 +9,11 @@ export const getMovie = async (movieId: string) => {
 	}
 };
 
-export const getMovies = async () => {
+export const getMovies = async (pageNumber: number) => {
 	try {
-		const response = await axios.get(`http://localhost:5000/movies/getMovies`);
+		const response = await axios.get(
+			`http://localhost:5000/movies/getMovies?pageNumber=${pageNumber}`
+		);
 		return response.data;
 	} catch (error) {
 		throw error;

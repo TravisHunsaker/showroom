@@ -34,11 +34,11 @@
 	/>
 	<div class="z-1 flex w-[1000px] gap-10">
 		<img
-			class="w-[400px] rounded-xl border3 object-contain"
+			class="border3 w-[400px] rounded-xl object-contain"
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt={movie.title}
 		/>
-		<div class="relative flex flex-1 rounded-xl border3 blurredBlack">
+		<div class="border3 blurredBlack relative flex flex-1 rounded-xl">
 			<div class="z-1 flex flex-col justify-between p-6">
 				<div class="flex flex-col gap-4">
 					<MovieDetailsSection {movie} {savedToWatchlist} />
