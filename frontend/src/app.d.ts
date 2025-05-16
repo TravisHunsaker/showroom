@@ -40,6 +40,7 @@ declare global {
 		interface TMovies {
 			page: number;
 			results: TMovie[];
+			total_pages: number;
 		}
 	}
 }

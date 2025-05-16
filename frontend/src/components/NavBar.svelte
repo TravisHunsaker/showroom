@@ -25,8 +25,8 @@
 
 <div class="fixed top-0 z-2 flex w-full gap-6 p-10 font-bold text-white">
 	<div
-		class={`flex w-full  items-center justify-between rounded-xl px-6 py-4 transition-all duration-300 ease-in-out ${
-			scrolled ? 'bg-white/25 backdrop-blur-sm' : ''
+		class={`flex w-full items-center justify-between rounded-xl px-6 py-4 transition-all duration-300 ease-in-out ${
+			scrolled ? 'bg-gray-500/50 backdrop-blur-sm' : ''
 		}`}
 	>
 		<div class="text-2xl">SHOWROOM</div>
