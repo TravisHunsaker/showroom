@@ -30,7 +30,7 @@
 		}`}
 	>
 		<div class="text-2xl">SHOWROOM</div>
-		<div class="flex items-center gap-6 text-xl">
+		<div class="sm:text-md flex items-center gap-6 md:text-xl">
 			{#each tabs as tab (tab.id)}
 				<a
 					href={tab.path}

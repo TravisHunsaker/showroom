@@ -10,7 +10,7 @@
 	$: MoviesStore.set(movies);
 </script>
 
-<Page title="Movies">
+<Page title={`Search "${title}"`}>
 	<div class="grid grid-cols-2 gap-10 sm:grid-cols-3 xl:grid-cols-4">
 		{#each $MoviesStore.results as movie (movie.id)}
 			<MovieCard {movie} />

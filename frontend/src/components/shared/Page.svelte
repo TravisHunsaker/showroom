@@ -13,9 +13,9 @@
 
 	<div class="flex justify-center">
 		<div class="z-1 flex w-full flex-col gap-10 lg:w-3/4">
-			<div class="flex justify-between">
-				<div class="text-4xl text-white">{title}</div>
-				{#if title !== 'Watchlist' || title !== 'Reviews'}
+			<div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+				<div class="text-2xl text-white md:text-4xl">{title}</div>
+				{#if title !== 'Watchlist' && title !== 'Reviews'}
 					<SearchBar />
 				{/if}
 			</div>
