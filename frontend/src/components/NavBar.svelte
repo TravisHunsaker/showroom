@@ -17,7 +17,7 @@
 	};
 
 	const tabs = [
-		{ path: '/', value: 'movies', text: 'Movies', id: '1' },
+		{ path: '/featured/1', value: 'featured', text: 'Featured', id: '1' },
 		{ path: '/watchlist', value: 'watchlist', text: 'Watchlist', id: '2' },
 		{ path: '/reviews', value: 'reviews', text: 'Reviews', id: '3' }
 	];

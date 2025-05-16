@@ -9,10 +9,19 @@ export const getMovie = async (movieId: number) => {
 	}
 };
 
-export const getMovies = async (pageNumber: number) => {
+export const getMovies = async (page: number) => {
+	try {
+		const response = await axios.get(`http://localhost:5000/movies/getMovies?page=${page}`);
+		return response.data;
+	} catch (error) {
+		throw error;
+	}
+};
+
+export const getSearchedMovie = async (title: string, page: number) => {
 	try {
 		const response = await axios.get(
-			`http://localhost:5000/movies/getMovies?pageNumber=${pageNumber}`
+			`http://localhost:5000/movies/getSearchedMovie?title=${encodeURIComponent(title)}&page=${page}`
 		);
 		return response.data;
 	} catch (error) {

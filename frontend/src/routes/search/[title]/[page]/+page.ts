@@ -1,0 +1,11 @@
+import { getSearchedMovie } from '../../../../bleh/movies';
+
+export async function load({ params }) {
+	const title = params.title;
+	const page = Number(params.page);
+	const movies = await getSearchedMovie(title, page);
+
+	console.log(movies);
+
+	return { movies, title, page };
+}

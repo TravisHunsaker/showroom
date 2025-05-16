@@ -36,7 +36,12 @@ declare global {
 			release_date: string;
 			genres: TGenre[];
 		}
+
+		interface TMovies {
+			page: number;
+			results: TMovie[];
+		}
 	}
 }
 
-export { TReview, TMovie, TReviewWithMovie };
+export { TReview, TMovie, TMovies, TReviewWithMovie };

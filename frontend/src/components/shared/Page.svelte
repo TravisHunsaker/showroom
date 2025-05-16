@@ -1,5 +1,6 @@
 <script>
 	import NavBar from '../NavBar.svelte';
+	import SearchBar from '../SearchBar.svelte';
 
 	export let title;
 </script>
@@ -12,7 +13,12 @@
 
 	<div class="flex justify-center">
 		<div class="z-1 flex w-full flex-col gap-10 lg:w-3/4">
-			<div class="text-4xl text-white">{title}</div>
+			<div class="flex justify-between">
+				<div class="text-4xl text-white">{title}</div>
+				{#if title !== 'Watchlist' || title !== 'Reviews'}
+					<SearchBar />
+				{/if}
+			</div>
 			<slot></slot>
 		</div>
 	</div>
