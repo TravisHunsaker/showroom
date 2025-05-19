@@ -47,35 +47,37 @@
 	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold text-white"
 >
 	<div
-		class=" border3 blurredBlack flex h-[500px] w-[500px] flex-col gap-4 rounded-xl p-6 opacity-100"
+		class="blurredBlack flex h-full w-full flex-col justify-between gap-4 rounded-xl p-6 opacity-100 md:h-[500px] md:w-[500px] md:border-3 md:border-white"
 	>
-		<div class="flex gap-4">
-			<img
-				class="w-[150px] rounded-xl object-contain"
-				src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-				alt={movie.title}
-			/>
-			<div class="flex flex-col gap-4">
-				<div class="text-2xl">{movie.title}</div>
-				<div>
-					<div>Rate</div>
-					<Rating {rating} max={5} onRate={(val: number) => setRating(val)} />
-				</div>
-				<div>
-					<div>Date</div>
-					<div>{date}</div>
+		<div class="flex flex-col gap-4">
+			<div class="flex gap-4">
+				<img
+					class="w-[125px] rounded-xl object-contain sm:w-[150px]"
+					src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+					alt={movie.title}
+				/>
+				<div class="flex flex-col gap-4">
+					<div class="text-2xl">{movie.title}</div>
+					<div>
+						<div>Rate</div>
+						<Rating {rating} max={5} onRate={(val: number) => setRating(val)} />
+					</div>
+					<div>
+						<div>Date</div>
+						<div>{date}</div>
+					</div>
 				</div>
 			</div>
+			<textarea
+				placeholder="Add review"
+				class="w-full resize-none focus:outline-none"
+				rows={6}
+				bind:value={review}
+			></textarea>
 		</div>
-		<textarea
-			placeholder="Add review"
-			class="w-full resize-none focus:outline-none"
-			rows={6}
-			bind:value={review}
-		></textarea>
 		<div class="flex justify-end gap-4">
-			<Button on:click={handleSave}>Save</Button>
-			<Button on:click={handleClose} outlined>Cancel</Button>
+			<Button on:click={handleSave} fullWidth>Save</Button>
+			<Button on:click={handleClose} outlined fullWidth>Cancel</Button>
 		</div>
 	</div>
 </div>

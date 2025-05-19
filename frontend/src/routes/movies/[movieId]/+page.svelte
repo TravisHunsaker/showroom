@@ -36,7 +36,7 @@
 
 <div class="relative flex h-screen items-center justify-center bg-black p-4 text-white sm:p-10">
 	<div class="absolute top-4 left-4 z-1 sm:top-10 sm:left-10">
-		<Button on:click={() => history.back()}>Back</Button>
+		<Button on:click={() => history.back()} outlined>Back</Button>
 	</div>
 	<img
 		class="absolute z-0 h-full w-full rounded-xl object-cover opacity-50 blur-xs"

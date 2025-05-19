@@ -11,7 +11,7 @@
 			<img
 				src="/icons/star.svg"
 				alt="Star"
-				class="size-10"
+				class="size-6 sm:size-8 lg:size-10"
 				class:opacity-100={i < rating}
 				class:opacity-0={i >= rating}
 			/>
@@ -20,7 +20,7 @@
 				<img
 					src="/icons/star.svg"
 					alt="Star"
-					class="size-10 cursor-pointer transition-transform hover:scale-110"
+					class=" size-6 cursor-pointer transition-transform hover:scale-110 sm:size-8 lg:size-10"
 					class:opacity-100={i < rating}
 					class:opacity-30={i >= rating}
 				/>

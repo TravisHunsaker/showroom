@@ -1,7 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { getSearchedMovie } from '../bleh/movies';
-	import { MoviesStore } from '../stores/MoviesStore';
 	import Button from './shared/Button.svelte';
 
 	let title = '';
@@ -11,8 +9,6 @@
 
 		try {
 			goto(`/search/${title}/1`);
-			// const data = await getSearchedMovie(title, $MoviesStore.page ?? 1);
-			// MoviesStore.set(data);
 		} catch (error) {
 			console.error('Search failed:', error);
 		}
@@ -24,7 +20,7 @@
 		type="text"
 		placeholder="Search title"
 		bind:value={title}
-		class="border3 blurredBlack w-full rounded-md px-3 py-2 text-white focus:outline-0"
+		class="border3 blurredBlack w-full rounded-md px-3 py-1 text-white focus:outline-0 sm:px-4 sm:py-2 sm:text-base md:px-4 md:py-2 md:text-lg"
 	/>
 	<Button on:click={handleSearch}>Search</Button>
 </div>
