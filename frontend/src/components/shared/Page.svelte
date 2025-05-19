@@ -7,7 +7,7 @@
 
 <NavBar />
 <div
-	class="relative flex w-full flex-col justify-center gap-10 overflow-hidden bg-black p-10 pt-35"
+	class="relative flex w-full flex-col justify-center gap-10 overflow-hidden bg-black px-4 pt-35 pb-4 sm:px-10 sm:pb-10"
 >
 	<img class="absolute h-full w-full object-cover opacity-50 blur-xs" src="/images/bg.png" alt="" />
 

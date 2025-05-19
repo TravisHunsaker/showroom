@@ -23,14 +23,17 @@
 	];
 </script>
 
-<div class="fixed top-0 z-2 flex w-full gap-6 p-10 font-bold text-white">
+<div class="fixed top-0 z-2 flex w-full gap-6 p-4 font-bold text-white sm:p-10">
 	<div
-		class={`flex w-full items-center justify-between rounded-xl px-6 py-4 transition-all duration-300 ease-in-out ${
+		class={`flex w-full items-center justify-between gap-2 rounded-xl px-4 py-4 transition-all duration-300 ease-in-out ${
 			scrolled ? 'bg-gray-500/50 backdrop-blur-sm' : ''
 		}`}
 	>
-		<div class="text-2xl">SHOWROOM</div>
-		<div class="sm:text-md flex items-center gap-6 md:text-xl">
+		<div class="flex items-center gap-2">
+			<img src={'/icons/logo.svg'} alt="" class="size-9" />
+			<div class="hidden text-4xl md:block">SHOWROOM</div>
+		</div>
+		<div class="xs:text-md flex items-center gap-4 sm:gap-6 sm:text-xl">
 			{#each tabs as tab (tab.id)}
 				<a
 					href={tab.path}

@@ -13,8 +13,8 @@
 			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt=""
 		/>
-		<div class="flex items-center gap-1 p-2 font-bold">
-			<div class="truncate text-ellipsis">{movie.title}</div>
+		<div class="flex w-full flex-col px-2 pt-0 pb-2 font-bold">
+			<div class="w-full truncate text-ellipsis">{movie.title}</div>
 			<div class="h-full">({year})</div>
 		</div>
 	</div>
