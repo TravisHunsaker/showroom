@@ -1,31 +1,22 @@
 <script lang="ts">
-	import { addToWatchlist, removeFromWatchlist } from '../../bleh/watchlist';
 	import MovieGenres from '../MovieGenres.svelte';
 
 	export let movie: App.TMovie;
-	export let savedToWatchlist: boolean;
-
-	const handleToggleBookmark = async (id: number) => {
-		if (savedToWatchlist) {
-			await removeFromWatchlist(id);
-		} else {
-			await addToWatchlist(id);
-		}
-
-		savedToWatchlist = !savedToWatchlist;
-	};
 </script>
 
-<div class="flex items-center justify-between">
-	<h1 class="text-3xl font-bold">{movie.title}</h1>
-	<button on:click={() => handleToggleBookmark(movie.id)}>
+<div>
+	<div class="flex justify-start gap-2">
 		<img
-			src={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
-			alt=""
-			class="size-9"
+			class="w-[100px] rounded-xl object-contain lg:hidden"
+			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+			alt={movie.title}
 		/>
-	</button>
+		<div class="flex w-full flex-col gap-2 lg:gap-4">
+			<h1 class="text-xl font-bold lg:text-3xl">{movie.title}</h1>
+
+			<MovieGenres genres={movie.genres} />
+		</div>
+	</div>
 </div>
-<MovieGenres genres={movie.genres} />
 
 <p>{movie.overview}</p>
