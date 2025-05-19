@@ -3,6 +3,7 @@
 	import { removeReview } from '../../bleh/reviews';
 	import ReviewModal from '../../components/ReviewModal.svelte';
 	import Button from '../../components/shared/Button.svelte';
+	import MoviePoster from '../../components/shared/MoviePoster.svelte';
 	import Page from '../../components/shared/Page.svelte';
 	import Rating from '../../components/shared/Rating.svelte';
 	import { ModalStore } from '../../stores/ModalStore';
@@ -52,11 +53,8 @@
 				<div
 					class="border3 blurredBlack flex h-[250px] w-full gap-4 overflow-hidden rounded-2xl p-4 shadow-2xl md:h-[250px] md:gap-0 md:p-0 lg:h-[250px]"
 				>
-					<img
-						class="h-1/2 rounded-md rounded-tr-none rounded-br-none border-r-3 object-contain backdrop-blur-xs md:h-full md:border-white"
-						src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-						alt=""
-					/>
+					<MoviePoster posterPath={movie.poster_path} variant="side" />
+
 					<div class="flex w-full flex-col justify-between text-white md:p-4 lg:p-6">
 						<div class="flex flex-col justify-start gap-2">
 							<div

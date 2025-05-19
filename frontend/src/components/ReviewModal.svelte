@@ -4,6 +4,7 @@
 	import { addReview, updateReview } from '../bleh/reviews';
 	import { onMount } from 'svelte';
 	import Rating from './shared/Rating.svelte';
+	import MoviePoster from './shared/MoviePoster.svelte';
 
 	export let handleClose: () => void;
 	export let movie: App.TMovie;
@@ -51,11 +52,7 @@
 	>
 		<div class="flex flex-col gap-4">
 			<div class="flex gap-4">
-				<img
-					class="w-[125px] rounded-xl object-contain sm:w-[150px]"
-					src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-					alt={movie.title}
-				/>
+				<MoviePoster posterPath={movie.poster_path} variant="modal" />
 				<div class="flex flex-col gap-4">
 					<div class="text-2xl">{movie.title}</div>
 					<div>

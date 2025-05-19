@@ -5,6 +5,7 @@
 	import ReviewSection from '../../../components/movieDetails/ReviewSection.svelte';
 	import ReviewModal from '../../../components/ReviewModal.svelte';
 	import Button from '../../../components/shared/Button.svelte';
+	import MoviePoster from '../../../components/shared/MoviePoster.svelte';
 	import { ModalStore } from '../../../stores/ModalStore';
 
 	export let data: App.TMovieDetailsData;
@@ -44,11 +45,7 @@
 		alt={movie.title}
 	/>
 	<div class="z-1 flex w-[1000px] gap-10">
-		<img
-			class="border3 hidden w-[400px] rounded-xl object-contain lg:block"
-			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-			alt={movie.title}
-		/>
+		<MoviePoster posterPath={movie.poster_path} variant="default" />
 		<div class="border3 blurredBlack relative flex flex-1 rounded-xl">
 			<div class="z-1 flex flex-col justify-between gap-24 p-6">
 				<div class="flex flex-col gap-4">
