@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { addToWatchlist, removeFromWatchlist } from '../../../bleh/watchlist';
-	import MovieDetailsSection from '../../../components/movieDetails/MovieDetailsSection.svelte';
-	import ReviewSection from '../../../components/movieDetails/ReviewSection.svelte';
-	import ReviewModal from '../../../components/ReviewModal.svelte';
-	import Button from '../../../components/shared/Button.svelte';
-	import MoviePoster from '../../../components/shared/MoviePoster.svelte';
+	import { addToWatchlist, removeFromWatchlist } from '$lib/services/watchlist';
+	import MovieDetailsSection from '$lib/components/movieDetails/DetailsSection.svelte';
+	import ReviewSection from '$lib/components/movieDetails/ReviewSection.svelte';
+	import ReviewModal from '$lib/components/movieDetails/ReviewModal.svelte';
+	import Button from '$lib/components/shared/Button.svelte';
+	import MoviePoster from '$lib/components/shared/MoviePoster.svelte';
 	import { ModalStore } from '../../../stores/ModalStore';
 
 	export let data: App.TMovieDetailsData;

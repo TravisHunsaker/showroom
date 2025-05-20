@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-	import Button from './shared/Button.svelte';
+	import Button from '../shared/Button.svelte';
 
 	let title = '';
 

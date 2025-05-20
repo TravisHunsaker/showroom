@@ -1,6 +1,6 @@
 <script>
-	import Page from '../../components/shared/Page.svelte';
-	import MovieCard from '../../components/shared/MovieCard.svelte';
+	import Page from '$lib/components/shared/Page.svelte';
+	import MovieCard from '$lib/components/shared/MovieCard.svelte';
 
 	export let data;
 	const movies = data?.movies ?? [];

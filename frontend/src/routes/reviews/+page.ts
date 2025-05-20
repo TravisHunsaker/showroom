@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getReviews } from '../../bleh/reviews.js';
+import { getReviews } from '../../lib/services/reviews.js';
 
 const API_KEY = '0f51ece3d9ef17f6ee82430fee1c55cf';
 

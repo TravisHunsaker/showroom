@@ -1,6 +1,6 @@
 <script>
-	import NavBar from '../NavBar.svelte';
-	import SearchBar from '../SearchBar.svelte';
+	import NavBar from './NavBar.svelte';
+	import SearchBar from '../home/SearchBar.svelte';
 
 	export let title;
 </script>

@@ -1,8 +1,8 @@
 <script>
-	import Page from '../../../components/shared/Page.svelte';
-	import MovieCard from '../../../components/shared/MovieCard.svelte';
+	import Page from '$lib/components/shared/Page.svelte';
+	import MovieCard from '$lib/components/shared/MovieCard.svelte';
 	import { MoviesStore } from '../../../stores/MoviesStore.js';
-	import Pagination from '../../../components/Pagination.svelte';
+	import Pagination from '$lib/components/home/Pagination.svelte';
 
 	export let data;
 	$: ({ movies } = data);

@@ -1,4 +1,4 @@
-import { getMovies } from '../../../bleh/movies.js';
+import { getMovies } from '../../../lib/services/movies.js';
 
 export async function load({ params }) {
 	const pageNumber = Number(params.pageNumber);

@@ -1,6 +1,6 @@
-import { getMovie } from '../../../bleh/movies';
-import { getReview } from '../../../bleh/reviews';
-import { isMovieInWatchlist } from '../../../bleh/watchlist';
+import { getMovie } from '../../../lib/services/movies';
+import { getReview } from '../../../lib/services/reviews';
+import { isMovieInWatchlist } from '../../../lib/services/watchlist';
 
 export async function load({ params }) {
 	const movieId = params.movieId;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Rating from '../shared/Rating.svelte';
+	import Rating from '$lib/components/shared/Rating.svelte';
 
 	export let myReview;
 	let createdAt = '';

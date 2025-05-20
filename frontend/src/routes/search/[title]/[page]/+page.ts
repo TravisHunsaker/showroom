@@ -1,4 +1,4 @@
-import { getSearchedMovie } from '../../../../bleh/movies';
+import { getSearchedMovie } from '../../../../lib/services/movies';
 
 export async function load({ params }) {
 	const title = params.title;

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import Button from './shared/Button.svelte';
-	import { addReview, updateReview } from '../bleh/reviews';
+	import Button from '../shared/Button.svelte';
+	import { addReview, updateReview } from '../../services/reviews';
 	import { onMount } from 'svelte';
-	import Rating from './shared/Rating.svelte';
-	import MoviePoster from './shared/MoviePoster.svelte';
+	import Rating from '../shared/Rating.svelte';
+	import MoviePoster from '../shared/MoviePoster.svelte';
 
 	export let handleClose: () => void;
 	export let movie: App.TMovie;

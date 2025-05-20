@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MovieGenres from '../MovieGenres.svelte';
+	import MovieGenres from './Genres.svelte';
 	import MoviePoster from '../shared/MoviePoster.svelte';
 
 	export let movie: App.TMovie;

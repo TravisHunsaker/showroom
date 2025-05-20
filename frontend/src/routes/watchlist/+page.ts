@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { getWatchlist } from '../../bleh/watchlist';
-import { getMovie } from '../../bleh/movies';
+import { getWatchlist } from '../../lib/services/watchlist';
+import { getMovie } from '../../lib/services/movies';
 
 const API_KEY = '0f51ece3d9ef17f6ee82430fee1c55cf';
 

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { goto, invalidateAll } from '$app/navigation';
-	import { removeReview } from '../../bleh/reviews';
-	import ReviewModal from '../../components/ReviewModal.svelte';
-	import Button from '../../components/shared/Button.svelte';
-	import MoviePoster from '../../components/shared/MoviePoster.svelte';
-	import Page from '../../components/shared/Page.svelte';
-	import Rating from '../../components/shared/Rating.svelte';
+	import { removeReview } from '$lib/services/reviews';
+	import ReviewModal from '$lib/components/movieDetails/ReviewModal.svelte';
+	import Button from '$lib/components/shared/Button.svelte';
+	import MoviePoster from '$lib/components/shared/MoviePoster.svelte';
+	import Page from '$lib/components/shared/Page.svelte';
+	import Rating from '$lib/components/shared/Rating.svelte';
 	import { ModalStore } from '../../stores/ModalStore';
 
 	$: open = $ModalStore;
