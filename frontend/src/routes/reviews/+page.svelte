@@ -8,10 +8,11 @@
 	import Rating from '$lib/components/movieDetails/Rating.svelte';
 	import { ModalStore } from '$lib/stores/ModalStore';
 
-	$: open = $ModalStore;
-	$: reviews = (data?.reviews as App.TReviewWithMovie[]) ?? [];
+	export let data: { reviews: App.TReviewWithMovie[] };
 
-	export let data;
+	$: open = $ModalStore;
+	$: reviews = data?.reviews ?? [];
+
 	let selectedMovie = {} as App.TMovie;
 	let myReview: App.TReview = {
 		id: '',
@@ -21,7 +22,8 @@
 		review: ''
 	};
 
-	const handleModal = (movie: App.TMovie, review: App.TReview) => {
+	const handleModal = (e: Event, movie: App.TMovie, review: App.TReview) => {
+		e.stopPropagation();
 		selectedMovie = movie;
 		myReview = review;
 		ModalStore.set(true);
@@ -32,7 +34,8 @@
 		await invalidateAll();
 	};
 
-	const handleRemoveReview = async (reviewId: string) => {
+	const handleRemoveReview = async (e: Event, reviewId: string) => {
+		e.stopPropagation();
 		await removeReview(reviewId);
 		await invalidateAll();
 	};
@@ -40,7 +43,7 @@
 
 <Page title="Reviews">
 	<div class="flex flex-col gap-6">
-		{#each reviews as { review, movie }: App.TReviewWithMovie}
+		{#each reviews as { review, movie }}
 			<button
 				on:click={(e) => {
 					e.stopPropagation();
@@ -67,19 +70,8 @@
 						</div>
 						<div class="flex items-center justify-end">
 							<div class="flex w-full items-center justify-end gap-4">
-								<Button
-									on:click={(e) => {
-										e.stopPropagation();
-										handleModal(movie, review);
-									}}>Edit</Button
-								>
-								<Button
-									outlined={true}
-									on:click={(e) => {
-										e.stopPropagation();
-										handleRemoveReview(review.id);
-									}}>Remove</Button
-								>
+								<Button on:click={(e) => handleModal(e, movie, review)}>Edit</Button>
+								<Button outlined on:click={(e) => handleRemoveReview(e, review.id)}>Remove</Button>
 							</div>
 						</div>
 					</div>

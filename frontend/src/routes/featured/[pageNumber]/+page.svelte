@@ -5,7 +5,8 @@
 	import Pagination from '$lib/components/home/Pagination.svelte';
 
 	export let data;
-	$: ({ movies } = data);
+
+	$: movies = data.movies;
 	$: MoviesStore.set(movies);
 </script>
 

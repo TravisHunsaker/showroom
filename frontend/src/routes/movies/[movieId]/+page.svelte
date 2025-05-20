@@ -10,11 +10,11 @@
 	import IconButton from '$lib/components/shared/IconButton.svelte';
 
 	export let data: App.TMovieDetailsData;
-	const { movie, response, myReview } = data;
 
-	let savedToWatchlist = response.inWatchlist;
-
+	$: ({ movie, response, myReview } = data);
 	$: open = $ModalStore;
+
+	let savedToWatchlist = response?.inWatchlist;
 
 	const handleOpen = async () => {
 		ModalStore.set(true);
@@ -53,9 +53,12 @@
 					<MovieDetailsSection {movie} />
 					<ReviewSection {myReview} />
 				</div>
-				<div class="flex justify-between items-center">
+				<div class="flex items-center justify-between">
 					<Button on:click={handleOpen}>{myReview ? 'Edit' : 'Review'}</Button>
-					<IconButton on:click={() => handleToggleBookmark(movie.id)} iconPath={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'} />
+					<IconButton
+						on:click={() => handleToggleBookmark(movie.id)}
+						iconPath={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
+					/>
 				</div>
 			</div>
 		</div>

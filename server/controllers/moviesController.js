@@ -36,6 +36,8 @@ export const getMovies = async (req, res) => {
 		}
 
 		const movieData = await tmdbRes.json();
+		movieData.results = movieData.results.filter(movie => movie.poster_path);
+
 		res.status(200).json(movieData); 
 	} catch (err) {
 		res.status(500).json({ error: err.message });
@@ -54,31 +56,10 @@ export const getSearchedMovie = async (req, res) => {
 		}
 
 		const movieData = await tmdbRes.json();
+		movieData.results = movieData.results.filter(movie => movie.poster_path);
+
 		res.status(200).json(movieData); 
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}
 };
-
-// export const getMovies = async (req, res) => {
-// 	const { title, page = 1 } = req.query;
-
-// 	try {
-// 		const baseUrl = title
-// 			? `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(title)}&page=${page}`
-// 			: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
-
-// 		const tmdbRes = await fetch(baseUrl);
-
-// 		if (!tmdbRes.ok) {
-// 			throw new Error('TMDB fetch failed');
-// 		}
-
-// 		const movieData = await tmdbRes.json();
-// 		console.log(movieData);
-
-// 		res.status(200).json(movieData);
-// 	} catch (err) {
-// 		res.status(500).json({ error: err.message });
-// 	}
-// };
