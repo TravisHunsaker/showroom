@@ -1,17 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
+	import { useScroll } from '../../../hooks/useScroll';
 
-	onMount(() => {
-		const handleScroll = () => {
-			scrolled = window.scrollY > 10;
-		};
+	const scrolled = useScroll();
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	});
-
-	let scrolled = false;
 	const changeCurrentTab = (path: string) => {
 		goto(path);
 	};
@@ -26,7 +18,7 @@
 <div class="fixed top-0 z-2 flex w-full gap-6 p-4 font-bold text-white sm:p-10">
 	<div
 		class={`flex w-full items-center justify-between gap-2 rounded-xl px-4 py-4 transition-all duration-300 ease-in-out ${
-			scrolled ? 'bg-gray-500/50 backdrop-blur-sm' : ''
+			$scrolled ? 'bg-gray-500/50 backdrop-blur-sm' : ''
 		}`}
 	>
 		<div class="flex items-center gap-2">

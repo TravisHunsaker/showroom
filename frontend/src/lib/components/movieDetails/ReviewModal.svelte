@@ -3,7 +3,7 @@
 	import Button from '../shared/Button.svelte';
 	import { addReview, updateReview } from '../../services/reviews';
 	import { onMount } from 'svelte';
-	import Rating from '../shared/Rating.svelte';
+	import Rating from './Rating.svelte';
 	import MoviePoster from '../shared/MoviePoster.svelte';
 
 	export let handleClose: () => void;

@@ -5,13 +5,11 @@
 	import Button from '$lib/components/shared/Button.svelte';
 	import MoviePoster from '$lib/components/shared/MoviePoster.svelte';
 	import Page from '$lib/components/shared/Page.svelte';
-	import Rating from '$lib/components/shared/Rating.svelte';
+	import Rating from '$lib/components/movieDetails/Rating.svelte';
 	import { ModalStore } from '../../stores/ModalStore';
 
 	$: open = $ModalStore;
 	$: reviews = (data?.reviews as App.TReviewWithMovie[]) ?? [];
-
-	console.log(reviews);
 
 	export let data;
 	let selectedMovie = {} as App.TMovie;
@@ -68,7 +66,7 @@
 							</div>
 						</div>
 						<div class="flex items-center justify-end">
-							<div class="flex w-full items-center gap-4 md:w-1/2 md:max-w-[300px]">
+							<div class="flex w-full items-center justify-end gap-4 ">
 								<Button
 									on:click={(e) => {
 										e.stopPropagation();
