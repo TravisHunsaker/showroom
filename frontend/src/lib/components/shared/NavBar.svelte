@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { useScroll } from '../../../hooks/useScroll';
+	import { useScroll } from '$lib/hooks/useScroll';
 
 	const scrolled = useScroll();
 

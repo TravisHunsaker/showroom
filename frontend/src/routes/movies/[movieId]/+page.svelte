@@ -6,7 +6,8 @@
 	import ReviewModal from '$lib/components/movieDetails/ReviewModal.svelte';
 	import Button from '$lib/components/shared/Button.svelte';
 	import MoviePoster from '$lib/components/shared/MoviePoster.svelte';
-	import { ModalStore } from '../../../stores/ModalStore';
+	import { ModalStore } from '$lib/stores/ModalStore';
+	import IconButton from '$lib/components/shared/IconButton.svelte';
 
 	export let data: App.TMovieDetailsData;
 	const { movie, response, myReview } = data;
@@ -40,7 +41,7 @@
 		<Button on:click={() => history.back()} outlined>Back</Button>
 	</div>
 	<img
-		class="absolute z-0 h-full w-full rounded-xl object-cover opacity-50 blur-xs"
+		class="absolute z-0 h-full object-cover opacity-50 blur-xs"
 		src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
 		alt={movie.title}
 	/>
@@ -50,22 +51,11 @@
 			<div class="z-1 flex flex-col justify-between gap-24 p-6">
 				<div class="flex flex-col gap-4">
 					<MovieDetailsSection {movie} />
-
-					{#if myReview}
-						<ReviewSection {myReview} />
-					{:else}
-						<p class="text-[#818182]">No review yet!</p>
-					{/if}
+					<ReviewSection {myReview} />
 				</div>
-				<div class="flex justify-between">
+				<div class="flex justify-between items-center">
 					<Button on:click={handleOpen}>{myReview ? 'Edit' : 'Review'}</Button>
-					<button on:click={() => handleToggleBookmark(movie.id)} class="">
-						<img
-							src={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'}
-							alt=""
-							class="size-9"
-						/>
-					</button>
+					<IconButton on:click={() => handleToggleBookmark(movie.id)} iconPath={savedToWatchlist ? '/icons/bookmark.svg' : '/icons/bookmarkOutline.svg'} />
 				</div>
 			</div>
 		</div>

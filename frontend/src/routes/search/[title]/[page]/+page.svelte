@@ -2,7 +2,7 @@
 	import MovieCard from '$lib/components/shared/MovieCard.svelte';
 	import Page from '$lib/components/shared/Page.svelte';
 	import Pagination from '$lib/components/home/Pagination.svelte';
-	import { MoviesStore } from '../../../../stores/MoviesStore';
+	import { MoviesStore } from '$lib/stores/MoviesStore';
 
 	export let data;
 

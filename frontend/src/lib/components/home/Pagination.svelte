@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { MoviesStore } from '../../../stores/MoviesStore';
+	import { MoviesStore } from '$lib/stores/MoviesStore';
 	import Button from '../shared/Button.svelte';
 
 	export let path;

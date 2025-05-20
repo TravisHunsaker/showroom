@@ -29,7 +29,7 @@ export const addToWatchlist = async (req, res) => {
 
 export const removeFromWatchlist = async (req, res) => {
 	try {
-		const { movieId } = req.body;
+		const { movieId } = req.query;
 
 		const stmt = db.prepare(`
 			DELETE FROM watchlist WHERE movieId = ?

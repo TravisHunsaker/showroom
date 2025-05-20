@@ -26,9 +26,8 @@ export const addToWatchlist = async (movieId: number) => {
 
 export const removeFromWatchlist = async (movieId: number) => {
 	try {
-		const response = await axios.post(
-			`http://localhost:5000/watchlist/removeFromWatchlist`,
-			movieId
+		const response = await axios.delete(
+			`http://localhost:5000/watchlist/removeFromWatchlist?movieId=${movieId}`
 		);
 
 		return response.data;
