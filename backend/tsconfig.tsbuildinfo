@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/moviescontroller.ts","./src/controllers/reviewscontroller.ts","./src/controllers/watchlistcontroller.ts","./src/db/db.ts","./src/db/initdb.ts","./src/routes/movies.ts","./src/routes/reviews.ts","./src/routes/watchlist.ts"],"errors":true,"version":"5.8.3"}

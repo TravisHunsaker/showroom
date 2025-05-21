@@ -1,15 +1,13 @@
-import db from "../db/db.js";
+import {Response, Request} from 'express'
+import db from "../db/db";
 
-export const addToWatchlist = async (req, res) => {
+export const addToWatchlist = async (req: Request, res: Response) => {
     try {
         const {movieId} = req.body;
 
-        // Check if movieId is provided
         if (!movieId) {
-            return res.status(400).json({ error: "movieId is required" });
+             res.status(400).json({ error: "movieId is required" });
         }
-
-        console.log("Movie ID:", movieId); // Debugging step
 
         const createdAt = new Date().toISOString();
 
@@ -20,14 +18,14 @@ export const addToWatchlist = async (req, res) => {
 
         const info = stmt.run(movieId, createdAt);
 
-        res.status(201).json({ message: 'Movie added to watchlist!', id: info.lastInsertRowid });
+        res.status(200).json({ message: 'Movie added to watchlist!', id: info.lastInsertRowid });
     } catch (err) {
         console.error("Unexpected server error:", err);
         res.status(500).json({ error: "Internal server error" });
     }
 };
 
-export const removeFromWatchlist = async (req, res) => {
+export const removeFromWatchlist = async (req: Request, res: Response) => {
 	try {
 		const { movieId } = req.query;
 
@@ -38,7 +36,7 @@ export const removeFromWatchlist = async (req, res) => {
 		const info = stmt.run(movieId);
 
 		if (info.changes === 0) {
-			return res.status(404).json({ message: 'Movie not found in watchlist' });
+			res.status(404).json({ message: 'Movie not found in watchlist' });
 		}
 
 		res.status(200).json({ message: 'Movie removed from watchlist!' });
@@ -48,16 +46,17 @@ export const removeFromWatchlist = async (req, res) => {
 	}
 };
 
-export const getWatchlist = (req, res) => {
+export const getWatchlist = (req: Request, res: Response) => {
 	try {
 		const rows = db.prepare('SELECT * FROM watchlist').all();
 		res.json(rows);
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		console.error("Unexpected server error:", err);
+		res.status(500).json({ error: "Internal server error" });
 	}
 };
 
-export const isMovieInWatchlist = async (req, res) => {
+export const isMovieInWatchlist = async (req: Request, res: Response) => {
 	try {
 		const { movieId } = req.query;
 

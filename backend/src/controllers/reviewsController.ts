@@ -1,6 +1,8 @@
-import db from "../db/db.js";
+import {Response, Request} from 'express'
 
-export const addReview = async (req, res) => {
+import db from "../db/db";
+
+export const addReview = async (req: Request, res: Response) => {
     try {
 		const { movieId, rating, review } = req.body;
 
@@ -20,7 +22,7 @@ export const addReview = async (req, res) => {
 	}
 }
 
-export const removeReview = async (req, res) => {
+export const removeReview = async (req: Request, res: Response) => {
 	try {
 		const { reviewId } = req.query;
 
@@ -28,7 +30,7 @@ export const removeReview = async (req, res) => {
 		const result = stmt.run(reviewId);
 
 		if (result.changes === 0) {
-			return res.status(404).json({ message: "Review not found" });
+			 res.status(404).json({ message: "Review not found" });
 		}
 
 		res.status(200).json({ message: "Review deleted successfully" });
@@ -38,8 +40,8 @@ export const removeReview = async (req, res) => {
 	}
 };
 
-export const updateReview = async (req, res) => {
-	try {
+export const updateReview = async (req: Request, res: Response) => {
+	try { 
 		const { movieId, rating, review } = req.body;
 
 		const stmt = db.prepare(`
@@ -51,7 +53,7 @@ export const updateReview = async (req, res) => {
 		const info = stmt.run(rating, review, movieId);
 
 		if (info.changes === 0) {
-			return res.status(404).json({ error: 'Review not found' });
+			 res.status(404).json({ error: 'Review not found' });
 		}
 
 		res.status(200).json({ message: 'Review updated!' });
@@ -61,16 +63,17 @@ export const updateReview = async (req, res) => {
 	}
 };
 
-export const getReviews = (req, res) => {
+export const getReviews = ( req: Request, res: Response) => {
 	try {
 		const rows = db.prepare('SELECT * FROM reviews').all();
 		res.json(rows);
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		console.error("Unexpected server error:", err);
+		res.status(500).json({ error: "Internal server error" });
 	}
 };
 
-export const getReview = (req, res) => {
+export const getReview = (req: Request, res: Response) => {
 	try {
 		const { movieId } = req.query;
 		
@@ -81,6 +84,7 @@ export const getReview = (req, res) => {
 			const row = stmt.get(movieId);
 		res.status(200).json(row);
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		console.error("Unexpected server error:", err);
+		res.status(500).json({ error: "Internal server error" });
 	}
 };

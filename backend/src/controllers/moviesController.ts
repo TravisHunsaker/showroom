@@ -1,11 +1,12 @@
-import dotenv from 'dotenv';
-dotenv.config();
 
+import {Response, Request} from 'express'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const API_KEY = process.env.TMDB_API_KEY
 
-
-export const getMovie = async (req, res) => {
+export const getMovie = async (req: Request, res: Response) => {
 	try {
 		const { movieId } = req.query;
 
@@ -20,11 +21,15 @@ export const getMovie = async (req, res) => {
 		const movieData = await tmdbRes.json();
 		res.status(200).json(movieData); 
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		if (err instanceof Error) {
+			res.status(500).json({ error: err.message });
+		} else {
+			res.status(500).json({ error: 'An unknown error occurred' });
+		}
 	}
 };
 
-export const getMovies = async (req, res) => {
+export const getMovies = async (req: Request, res: Response) => {
 	const { page } = req.query;
 	try {
         const tmdbRes = await fetch(
@@ -36,15 +41,19 @@ export const getMovies = async (req, res) => {
 		}
 
 		const movieData = await tmdbRes.json();
-		movieData.results = movieData.results.filter(movie => movie.poster_path);
+		movieData.results = movieData.results.filter((movie: any) => movie.poster_path);
 
 		res.status(200).json(movieData); 
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		if (err instanceof Error) {
+			res.status(500).json({ error: err.message });
+		} else {
+			res.status(500).json({ error: 'An unknown error occurred' });
+		}
 	}
 };
 
-export const getSearchedMovie = async (req, res) => {
+export const getSearchedMovie = async (req: Request, res: Response) => {
 	const { title, page } = req.query;
 	try {
         const tmdbRes = await fetch(
@@ -56,10 +65,14 @@ export const getSearchedMovie = async (req, res) => {
 		}
 
 		const movieData = await tmdbRes.json();
-		movieData.results = movieData.results.filter(movie => movie.poster_path);
+		movieData.results = movieData.results.filter((movie: any) => movie.poster_path);
 
 		res.status(200).json(movieData); 
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		if (err instanceof Error) {
+			res.status(500).json({ error: err.message });
+		} else {
+			res.status(500).json({ error: 'An unknown error occurred' });
+		}
 	}
 };

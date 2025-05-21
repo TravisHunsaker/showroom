@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import reviewsRouter from './routes/reviews.js'
-import watchlistRouter from './routes/watchlist.js'
-import moviesRouter from './routes/movies.js'
-import { InitDB } from './db/initDb.js'
+import reviewsRouter from './routes/reviews'
+import watchlistRouter from './routes/watchlist'
+import moviesRouter from './routes/movies'
+import { InitDB } from './db/initDb'
 
 const PORT = 5000;
 const app = express();

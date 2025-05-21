@@ -48,7 +48,7 @@
 	<div class="z-1 flex w-[1000px] gap-10">
 		<MoviePoster posterPath={movie.poster_path} variant="default" />
 		<div class="border3 blurredBlack relative flex flex-1 rounded-xl">
-			<div class="z-1 flex flex-col justify-between gap-24 p-6">
+			<div class="z-1 flex flex-col justify-between gap-24 p-6 w-full">
 				<div class="flex flex-col gap-4">
 					<MovieDetailsSection {movie} />
 					<ReviewSection {myReview} />

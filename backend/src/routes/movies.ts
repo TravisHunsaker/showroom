@@ -1,4 +1,4 @@
-import { getMovie, getMovies, getSearchedMovie } from '../controllers/moviesController.js';
+import { getMovie, getMovies, getSearchedMovie } from '../controllers/moviesController';
 import express from 'express';
 
 const router = express.Router();
