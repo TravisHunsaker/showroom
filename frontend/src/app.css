@@ -7,3 +7,7 @@
 .border3 {
 	@apply border-[3px] border-white;
 }
+
+.opacityOnHover {
+	@apply transition-opacity ease-in-out will-change-transform hover:opacity-75;
+}

@@ -48,7 +48,7 @@
 	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 font-bold text-white"
 >
 	<div
-		class="blurredBlack flex h-full w-full flex-col justify-between gap-4 rounded-xl p-6 opacity-100 md:h-[500px] md:w-[500px] md:border-3 md:border-white"
+		class="blurredBlack flex h-full w-full flex-col justify-between gap-4 rounded-xl p-6 opacity-100 md:h-[575px] md:w-[575px] md:border-3 md:border-white"
 	>
 		<div class="flex flex-col gap-4">
 			<div class="flex gap-4">

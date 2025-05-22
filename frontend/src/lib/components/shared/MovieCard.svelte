@@ -6,9 +6,9 @@
 	const year = movie.release_date.split('-')[0];
 </script>
 
-<a href={`/movies/${movie.id}`} class="z-1 flex transition ease-in-out hover:scale-[1.05]">
+<a href={`/movies/${movie.id}`} class="w-full h-full">
 	<div
-		class="flex w-full flex-1 flex-col gap-2 rounded-md border-3 border-white bg-white shadow-2xl"
+		class="flex flex-col w-full gap-2 rounded-md border-3 border-white bg-white shadow-2xl"
 	>
 		<MoviePoster posterPath={movie.poster_path} variant="card" />
 

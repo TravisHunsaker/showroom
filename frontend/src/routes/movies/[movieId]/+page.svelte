@@ -13,8 +13,8 @@
 
 	$: ({ movie, response, myReview } = data);
 	$: open = $ModalStore;
+	$: savedToWatchlist = response?.inWatchlist;
 
-	let savedToWatchlist = response?.inWatchlist;
 
 	const handleOpen = async () => {
 		ModalStore.set(true);

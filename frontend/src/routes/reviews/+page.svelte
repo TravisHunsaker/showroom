@@ -23,7 +23,7 @@
 	};
 
 	const handleModal = (e: Event, movie: App.TMovie, review: App.TReview) => {
-		e.stopPropagation();
+		e.preventDefault(); 
 		selectedMovie = movie;
 		myReview = review;
 		ModalStore.set(true);
@@ -35,7 +35,7 @@
 	};
 
 	const handleRemoveReview = async (e: Event, reviewId: string) => {
-		e.stopPropagation();
+		e.preventDefault(); 
 		await removeReview(reviewId);
 		await invalidateAll();
 	};
@@ -44,13 +44,7 @@
 <Page title="Reviews">
 	<div class="flex flex-col gap-6">
 		{#each reviews as { review, movie }}
-			<button
-				on:click={(e) => {
-					e.stopPropagation();
-					goto(`/movies/${movie.id}`);
-				}}
-				class="z-1 transition ease-in-out hover:scale-[1.05]"
-			>
+		<a href={`/movies/${movie.id}`}>
 				<div
 					class="border3 blurredBlack flex h-[250px] w-full gap-4 overflow-hidden rounded-2xl p-4 shadow-2xl md:h-[250px] md:gap-0 md:p-0 lg:h-[250px]"
 				>
@@ -76,7 +70,7 @@
 						</div>
 					</div>
 				</div>
-			</button>
+		</a>
 		{/each}
 	</div>
 	{#if open}

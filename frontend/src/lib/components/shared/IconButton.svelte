@@ -3,6 +3,6 @@
 	export let size = 'size-9' as string;
 </script>
 
-<button on:click class="transition-all ease-in-out hover:scale-110">
+<button on:click class="opacityOnHover">
 	<img src={iconPath} alt="icon" class={size} />
 </button>
