@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
-	import { removeReview } from '$lib/services/reviews';
-	import ReviewModal from '$lib/components/movieDetails/ReviewModal.svelte';
-	import Button from '$lib/components/shared/Button.svelte';
-	import MoviePoster from '$lib/components/shared/MoviePoster.svelte';
-	import Page from '$lib/components/shared/Page.svelte';
-	import Rating from '$lib/components/movieDetails/Rating.svelte';
+	import { invalidateAll } from '$app/navigation';
 	import { ModalStore } from '$lib/stores/ModalStore';
+	import Page from '$lib/components/shared/Page.svelte';
+	import Review from '$lib/components/reviews/Review.svelte';
+	import ReviewModal from '$lib/components/movieDetails/ReviewModal.svelte';
 
 	export let data: { reviews: App.TReviewWithMovie[] };
 
@@ -23,7 +20,7 @@
 	};
 
 	const handleModal = (e: Event, movie: App.TMovie, review: App.TReview) => {
-		e.preventDefault(); 
+		e.preventDefault();
 		selectedMovie = movie;
 		myReview = review;
 		ModalStore.set(true);
@@ -33,44 +30,12 @@
 		ModalStore.set(false);
 		await invalidateAll();
 	};
-
-	const handleRemoveReview = async (e: Event, reviewId: string) => {
-		e.preventDefault(); 
-		await removeReview(reviewId);
-		await invalidateAll();
-	};
 </script>
 
 <Page title="Reviews">
 	<div class="flex flex-col gap-6">
 		{#each reviews as { review, movie }}
-		<a href={`/movies/${movie.id}`}>
-				<div
-					class="border3 blurredBlack flex h-[250px] w-full gap-4 overflow-hidden rounded-2xl p-4 shadow-2xl md:h-[250px] md:gap-0 md:p-0 lg:h-[250px]"
-				>
-					<MoviePoster posterPath={movie.poster_path} variant="side" />
-
-					<div class="flex w-full flex-col justify-between text-white md:p-4 lg:p-6">
-						<div class="flex flex-col justify-start gap-2">
-							<div
-								class="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between sm:gap-2"
-							>
-								<div class="truncate text-xl text-ellipsis md:text-3xl">{movie.title}</div>
-								<Rating rating={review.rating} max={review.rating} readonly />
-							</div>
-							<div class="flex justify-start text-base text-[#818182] lg:text-xl">
-								{review.review}
-							</div>
-						</div>
-						<div class="flex items-center justify-end">
-							<div class="flex w-full items-center justify-end gap-4">
-								<Button on:click={(e) => handleModal(e, movie, review)}>Edit</Button>
-								<Button outlined on:click={(e) => handleRemoveReview(e, review.id)}>Remove</Button>
-							</div>
-						</div>
-					</div>
-				</div>
-		</a>
+			<Review {review} {movie} {handleModal} />
 		{/each}
 	</div>
 	{#if open}

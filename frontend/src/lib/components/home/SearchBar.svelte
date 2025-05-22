@@ -20,7 +20,7 @@
 		type="text"
 		placeholder="Search title"
 		bind:value={title}
-		class="border3 blurredBlack w-full text-sm rounded-md px-4 py-2 text-white focus:outline-0 sm:px-5 sm:py-2.5 sm:text-base md:px-6 md:py-3 md:text-lg"
+		class="border3 blurredBlack w-full rounded-md px-4 py-2 text-sm text-white focus:outline-0 sm:px-5 sm:py-2.5 sm:text-base md:px-6 md:py-3 md:text-lg"
 	/>
 	<Button on:click={handleSearch}>Search</Button>
 </div>

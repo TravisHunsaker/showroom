@@ -7,14 +7,13 @@
 
 <NavBar />
 <div
-	class="relative flex w-full h-full min-h-screen flex-col  gap-10 overflow-hidden bg-black px-4 pt-35 pb-4 sm:px-10 sm:pb-10"
+	class="relative flex h-full min-h-screen w-full flex-col gap-10 overflow-hidden bg-black px-4 pt-35 pb-4 sm:px-10 sm:pb-10"
 >
 	<img
-	loading="lazy"
+		loading="lazy"
 		class="absolute inset-0 h-full w-full object-cover opacity-50 blur-xs"
 		src="/images/bg.png"
 		alt=""
-		
 	/>
 
 	<div class="flex justify-center">
