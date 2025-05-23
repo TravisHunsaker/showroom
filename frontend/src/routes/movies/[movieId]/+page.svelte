@@ -40,7 +40,7 @@
 		<Button on:click={() => history.back()} outlined>Back</Button>
 	</div>
 	<img
-		class="absolute z-0 h-full object-cover opacity-50 blur-xs"
+		class="absolute z-0 h-full w-full object-cover opacity-50 blur-xs"
 		src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
 		alt={movie.title}
 	/>
