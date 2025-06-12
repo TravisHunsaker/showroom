@@ -3,8 +3,6 @@ import express from 'express';
 
 const router = express.Router();
 
-console.log(typeof updateReview);
-
 router.post('/addReview', addReview)
 router.get('/getReviews', getReviews)
 router.get('/getReview', getReview)

@@ -14,8 +14,6 @@
 	let review = '';
 	const date = new Date().toDateString();
 
-	console.log(movie);
-
 	onMount(() => {
 		if (myReview) {
 			rating = myReview.rating;
@@ -36,7 +34,6 @@
 				await addReview(reviewData);
 			}
 			handleClose();
-			console.log('Review saved successfully');
 		} catch (error) {
 			console.error('Error saving review:', error);
 		}
